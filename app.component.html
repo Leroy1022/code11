@@ -1,0 +1,90 @@
+<br>
+<button mat-raised-button (click)="openTempDialog()">Add Invoice</button>
+<ng-template #dialogRef let-mydata>
+  &nbsp; 
+  <h3>Add Invoice</h3>
+  <mat-card>
+    <mat-card-content><h4>Invoice Information</h4>
+      <tr>
+        <td>
+      <h6>Location</h6>
+      <mat-form-field appearance="fill">
+        <mat-label>Manhattan</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let Location of locations" [value]="Location.value">
+            {{Location.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </td>
+      &nbsp;
+    <td>
+      <h6 >Building</h6>
+      <mat-form-field appearance="fill">
+        <mat-label>Empire State Building</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let Building of buildings" [value]="Building.value">
+            {{Building.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </td>
+      &nbsp;
+      <td>
+        <h6 >Provider</h6>
+        <mat-form-field appearance="fill">
+          <mat-label>ConEdison</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let Provider of Providers" [value]="Provider.value">
+              {{Provider.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </td>
+        &nbsp;
+      <td>
+        <h6 >Account Number</h6>
+        <mat-form-field appearance="fill">
+          <mat-label>49-4202-3200-0000-8</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let Account of accounts" [value]="Account.value">
+              {{Account.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </td>
+        &nbsp;
+        <td>
+          <h6 >Invoice Number</h6>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+        </td>
+        &nbsp;
+        <td>
+          <h6 >Premises Number</h6>
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="" value="">
+        </mat-form-field>
+        </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <h6 >Utility</h6>
+        
+          <h4>Eletricity</h4>
+        &nbsp;
+        </td>
+        &nbsp;
+        <td>
+          <h6 >Account Number</h6>
+          
+          
+          </td>
+    </tr>
+    </mat-card-content>  
+  </mat-card>
+  
+  <button mat-button mat-dialog-close="I am from dialog land...">Close</button>
+</ng-template>
