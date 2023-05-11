@@ -1,26 +1,3 @@
-h6{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: small;
-}
-mat-label{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: small;
-}
-mat-card{
-    height: auto;
-    width: auto;
-}
-mat-card-content{
-    height: auto;
-    width: auto;
-}
-openTempDialog{
-    width: auto;
-}
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+.mat-sort-header-container {
+    align-items: center;
   }
-  
- 
