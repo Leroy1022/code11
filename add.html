@@ -1,4 +1,11 @@
-<button type="button" class="btn-close" aria-label="Close"></button>
+<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"> 
+  this.closeResult = `Closed with: ${result}`;  
+
+    }, (reason) => {  
+
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
+
+    });  
 <a class="close" href="#popup1">×</a>
 .popup .close       { position: absolute; top: 20px; right: 30px; transition: all 200ms;
 
