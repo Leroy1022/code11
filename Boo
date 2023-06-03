@@ -7,3 +7,19 @@
       <div *ngIf="selectedDateOption === 'last7Days'">
         Date of the last 7th day: {{ last7thDay }}
       </div>
+selectedDateOption: string;
+  last7thDay: string;
+
+  constructor() {
+    this.selectedDateOption = '';
+    this.last7thDay = '';
+  }
+
+  onDateOptionChange(option: string): void {
+    if (option === 'last7Days') {
+      const today = new Date();
+      const last7thDay = new Date(today);
+      last7thDay.setDate(today.getDate() - 7);
+      this.last7thDay = last7thDay.toDateString();
+    }
+  }
