@@ -1,25 +1,39 @@
-<label>
-        <input type="radio" name="dateOption" (change)="onDateOptionChange($event.target.value)" value="last7Days"> Last 7 Days
-        <input type="radio" name="dateOption" (change)="onDateOptionChange($event.target.value)" value="lastmonth"> Last 7 Days
-       
-    </label>
-  
-      <div *ngIf="selectedDateOption === 'last7Days'">
-        Date of the last 7th day: {{ last7thDay }}
+ <div>
+        <label>
+          <input type="radio" name="dateRange" value="all" [(ngModel)]="selectedDateRange" (ngModelChange)="updateDateRange()">
+          All Dates
+        </label>
+        <label>
+          <input type="radio" name="dateRange" value="last7" [(ngModel)]="selectedDateRange" (ngModelChange)="updateDateRange()">
+          Last 7 Days
+        </label>
       </div>
-selectedDateOption: string;
-  last7thDay: string;
+  
+      <div *ngIf="selectedDateRange === 'last7'">
+        <ul>
+          <li *ngFor="let date of pastSevenDays">{{ date | date }}</li>
+        </ul>
+      </div>
+      selectedDateRange: string = 'all';
+  pastSevenDays: Date[] = [];
 
-  constructor() {
-    this.selectedDateOption = '';
-    this.last7thDay = '';
-  }
-
-  onDateOptionChange(option: string): void {
-    if (option === 'last7Days') {
-      const today = new Date();
-      const last7thDay = new Date(today);
-      last7thDay.setDate(today.getDate() - 7);
-      this.last7thDay = last7thDay.toDateString();
+  updateDateRange(): void {
+    if (this.selectedDateRange === 'last7') {
+      this.calculatePastSevenDays();
+    } else {
+      // Reset the array if "All Dates" is selected
+      this.pastSevenDays = [];
     }
+  }calculatePastSevenDays(): void {
+    const today = new Date(); // Current date
+
+    this.pastSevenDays = [];
+
+    for (let i = 0; i < 7; i++) {
+      const pastDate = new Date(today);
+      pastDate.setDate(today.getDate() - i);
+      this.pastSevenDays.push(pastDate);
+    }
+
+    this.pastSevenDays.reverse(); // Reverse the array to get the past dates in ascending order
   }
