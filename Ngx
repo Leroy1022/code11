@@ -1,1 +1,12 @@
 https://www.npmjs.com/package/ngx-bootstrap-fix-datepicker
+<input type="text"
+  ngxDaterangepickerMd
+  [(ngModel)]="selected"
+  [showCustomRangeLabel]="true"
+  [alwaysShowCalendars]="true"
+  [ranges]="ranges"
+  [linkedCalendars]="true"
+  [isInvalidDate] = "isInvalidDate"
+  [showClearButton]="true"
+
+  placeholder="Select please.../>
