@@ -1,1 +1,9 @@
-https://qupaya.com/blog/angular-date-range-picker-with-custom-range-presets/
+<label>
+        <input type="radio" name="dateOption" (change)="onDateOptionChange($event.target.value)" value="last7Days"> Last 7 Days
+        <input type="radio" name="dateOption" (change)="onDateOptionChange($event.target.value)" value="lastmonth"> Last 7 Days
+       
+    </label>
+  
+      <div *ngIf="selectedDateOption === 'last7Days'">
+        Date of the last 7th day: {{ last7thDay }}
+      </div>
