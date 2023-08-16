@@ -1,48 +1,11 @@
-565- 572 
-
- it('should reset years and checkedList correctly', () => {
+983 to 985
+ it('should not change actionsClicked property when toggled', () => {
     // Arrange
-    component.Year = [
-      { Year: 2020, IsChecked: true, IsYearDisabled: false },
-      { Year: 2021, IsChecked: false, IsYearDisabled: false },
-      { Year: 2022, IsChecked: true, IsYearDisabled: false },
-      { Year: 2023, IsChecked: false, IsYearDisabled: false },
-    ];
+    const initialActionsClicked = component.actionsClicked;
 
+    // Act
+    component.toggleActionsDropdown();
 
-549 to 563
-it('should set selectAllFilter and inderminateFilter to true when all items are checked', () => {
-    const filterResult = [{ IsChecked: true }, { IsChecked: true }];
-
-    const result = service.getSelectedFilterData(filterResult);
-
-    expect(result.selectAllFilter).toBe(true);
-    expect(result.inderminateFilter).toBe(false);
-  });
-
-  it('should set selectAllFilter and inderminateFilter to false when all items are unchecked', () => {
-    const filterResult = [{ IsChecked: false }, { IsChecked: false }];
-
-    const result = service.getSelectedFilterData(filterResult);
-
-    expect(result.selectAllFilter).toBe(false);
-    expect(result.inderminateFilter).toBe(false);
-  });
-
-  it('should set selectAllFilter to false and inderminateFilter to true when items are a mix of checked and unchecked', () => {
-    const filterResult = [{ IsChecked: true }, { IsChecked: false }];
-
-    const result = service.getSelectedFilterData(filterResult);
-
-    expect(result.selectAllFilter).toBe(false);
-    expect(result.inderminateFilter).toBe(true);
-  });
-
-  it('should sort filterResult based on IsChecked status', () => {
-    const filterResult = [{ IsChecked: true }, { IsChecked: false }];
-
-    const result = service.getSelectedFilterData(filterResult);
-
-    expect(result.filterResult[0].IsChecked).toBe(false);
-    expect(result.filterResult[1].IsChecked).toBe(true);
+    // Assert
+    expect(component.actionsClicked).toBe(initialActionsClicked);
   });
