@@ -1,11 +1,13 @@
-016 to 017
-it('should set addInvoiceClicked to true', () => {
+939 to 942
+ it('should set customRange to true and selectedDateRange to calenderCustomRange', () => {
     // Arrange
-    component.addInvoiceClicked = false; // Initial value
+    component.customRange = false;
+    component.selectedDateRange = 'previousWeek'; // Initial values
     
     // Act
-    component.addInvoice();
+    component.toggleCustomRange();
 
     // Assert
-    expect(component.addInvoiceClicked).toBe(true);
+    expect(component.customRange).toBe(true);
+    expect(component.selectedDateRange).toBe('calenderCustomRange');
   });
