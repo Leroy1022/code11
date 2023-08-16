@@ -4,3 +4,9 @@ const actionsClicked = component.actionsClicked;
 component.toggleActionsDropdown();
 expect(component.actionsClicked).toBe(actionsClicked);
 });
+
+it('should actionsClicked be false when clickedOutsideActions()', () => {
+component.actionsClicked = true;
+component.clickedOutsideActions();
+expect(component.actionsClicked).toBe(false);
+});
