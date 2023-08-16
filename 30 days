@@ -9,3 +9,14 @@
     // Assert
     expect(component.actionsClicked).toBe(initialActionsClicked);
   });
+
+987 to 989
+it('should set actionsClicked to false when clicked outside actions', () => {
+    // Arrange (Assume actionsClicked is initially set to true)
+    component.actionsClicked = true;
+
+    // Act
+    component.clickedOutsideActions();
+
+    // Assert
+    expect(component.actionsClicked).toBe(false);
