@@ -109,3 +109,43 @@ it('should set actionsClicked to false when clicked outside actions', () => {
     // Assert
     expect(component.invoiceHeader.length).toBe(0);
   });
+
+971 to 976
+
+  it('should check all rows and call countSelected', () => {
+    // Arrange
+    component.result = [
+      { IsRowChecked: false },
+      { IsRowChecked: false },
+    ];
+    component.selectAllRows = true;
+    
+    spyOn(component, 'countSelected'); // Spy on countSelected method
+
+    // Act
+    component.getAllSelectedRows();
+
+    // Assert
+    expect(component.result[0].IsRowChecked).toBe(true);
+    expect(component.result[1].IsRowChecked).toBe(true);
+    expect(component.countSelected).toHaveBeenCalled();
+  });
+
+  it('should uncheck all rows and call countSelected', () => {
+    // Arrange
+    component.result = [
+      { IsRowChecked: true },
+      { IsRowChecked: true },
+    ];
+    component.selectAllRows = false;
+    
+    spyOn(component, 'countSelected'); // Spy on countSelected method
+
+    // Act
+    component.getAllSelectedRows();
+
+    // Assert
+    expect(component.result[0].IsRowChecked).toBe(false);
+    expect(component.result[1].IsRowChecked).toBe(false);
+    expect(component.countSelected).toHaveBeenCalled();
+  });
