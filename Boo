@@ -1,16 +1,11 @@
- // Get the current date
-const currentDate = new Date();
+016 to 017
+it('should set addInvoiceClicked to true', () => {
+    // Arrange
+    component.addInvoiceClicked = false; // Initial value
+    
+    // Act
+    component.addInvoice();
 
-// Create a new date object for the starting point
-const startDate = new Date(currentDate);
-startDate.setDate(startDate.getDate() - 6); // Subtract 6 days
-
-// Iterate over the range of dates
-for (let i = 0; i < 7; i++) {
-  const date = new Date(startDate);
-  date.setDate(date.getDate() + i); // Add i days
-
-  // Display the date in the desired format (e.g., YYYY-MM-DD)
-  const formattedDate = date.toISOString().slice(0, 10);
-  console.log(formattedDate);
-}
+    // Assert
+    expect(component.addInvoiceClicked).toBe(true);
+  });
