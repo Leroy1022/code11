@@ -11,9 +11,34 @@ component.clickedOutsideActions();
 expect(component.actionsClicked).toBe(false);
 });
 
-
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
 it('should toggle expand when toggleRowMenu() is called',()=>{
 const IsRowExpanded = data.IsRowExpanded;
 component.toggleRowMenu(data);
 expect(data.IsRowExpanded).toBe(IsRowExpanded);
 });
+
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
+it('should flagHeader update when changeflagheader() is called', () => {
+ 
+ const data: InvoicoleaderDetails = {clickFlag: false};
+ expect(component.filterclicked).toBe(false);
+ component.resetAllFlag(data);
+ expect(data.clickFlag).toBe(true);
+});  
+
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
+it('should clickFlag reset when resetAllFlag() is called', () => {
+     component.invoiceHeader = [ { clickFlag: true },{ clickFlag: true },];
+     component.resetAllFlag();
+     expect(component.invoiceHeader[0].clickFlag).toBe(false);
+     expect(component.invoiceHeader[1].clickFlag).toBe(false);
+});
+
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
+ it('should toggle date range be selected when toggleCustomRange() is called', () => {
+  component.toggleCustomRange();
+  expect(component.customRange).toBe(true);
+  expect(component.selectedDateRange).toBe(calenderCustomRange);
+ });
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
