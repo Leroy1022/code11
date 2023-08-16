@@ -149,3 +149,18 @@ it('should set actionsClicked to false when clicked outside actions', () => {
     expect(component.result[1].IsRowChecked).toBe(false);
     expect(component.countSelected).toHaveBeenCalled();
   });
+
+
+939 to 942
+it('should set customRange and selectedDateRange correctly', () => {
+    // Arrange
+    component.customRange = false;
+    component.selectedDateRange = 'previousWeek'; // Initial value
+    
+    // Act
+    component.toggleCustomRange();
+
+    // Assert
+    expect(component.customRange).toBe(true);
+    expect(component.selectedDateRange).toBe('calenderCustomRange');
+  });
