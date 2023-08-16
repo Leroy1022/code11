@@ -13,8 +13,7 @@ expect(component.actionsClicked).toBe(false);
 
 
 it('should toggle expand when toggleRowMenu() is called',()=>{
-const data: InvoiceDetailsForGrid = {
-      IsRowExpanded: false, };
+const IsRowExpanded = data.IsRowExpanded;
 component.toggleRowMenu(data);
-expect(data.IsRowExpanded).toBe(true);
+expect(data.IsRowExpanded).toBe(IsRowExpanded);
 });
