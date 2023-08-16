@@ -20,3 +20,31 @@ it('should set actionsClicked to false when clicked outside actions', () => {
 
     // Assert
     expect(component.actionsClicked).toBe(false);
+
+978 to 981
+  it('should set actionsClicked to false', () => {
+    // Arrange (Assume actionsClicked is initially set to true)
+    component.actionsClicked = true;
+
+    // Act
+    component.countSelected();
+
+    // Assert
+    expect(component.actionsClicked).toBe(false);
+  });
+
+  it('should count selected items correctly', () => {
+    // Arrange
+    component.result = [
+      { IsRowChecked: true },
+      { IsRowChecked: false },
+      { IsRowChecked: true },
+    ];
+
+    // Act
+    component.countSelected();
+
+    // Assert
+    expect(component.selectedCount).toBe(2);
+  });
+
