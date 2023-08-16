@@ -48,3 +48,36 @@ it('should set actionsClicked to false when clicked outside actions', () => {
     expect(component.selectedCount).toBe(2);
   });
 
+
+
+  it('should reset invoiceHeader and invoiceData properties on destroy', () => {
+    // Arrange
+    const invoiceHeader = [
+      { clickFlag: true, ISAscending: true, IsDescending: true },
+      { clickFlag: false, ISAscending: true, IsDescending: false },
+    ];
+    const invoiceData = [
+      { IsRowChecked: true },
+      { IsRowChecked: false },
+    ];
+
+    component.invoiceHeader = invoiceHeader;
+    component.invoiceData = invoiceData;
+
+    // Act
+    component.ngOnDestroy();
+
+    // Assert
+    expect(component.invoiceHeader[0].clickFlag).toBe(false);
+    expect(component.invoiceHeader[0].ISAscending).toBe(false);
+    expect(component.invoiceHeader[0].IsDescending).toBe(false);
+
+    expect(component.invoiceHeader[1].clickFlag).toBe(false);
+    expect(component.invoiceHeader[1].ISAscending).toBe(false);
+    expect(component.invoiceHeader[1].IsDescending).toBe(false);
+
+    expect(component.invoiceData[0].IsRowChecked).toBe(false);
+    expect(component.invoiceData[1].IsRowChecked).toBe(false);
+  });
+
+ 
