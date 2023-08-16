@@ -81,3 +81,31 @@ it('should set actionsClicked to false when clicked outside actions', () => {
   });
 
  
+
+927 to 929
+  it('should set clickFlag to false for all items in invoiceHeader', () => {
+    // Arrange
+    const invoiceHeader = [
+      { clickFlag: true },
+      { clickFlag: true },
+    ];
+    component.invoiceHeader = invoiceHeader;
+
+    // Act
+    component.resetAllFlag();
+
+    // Assert
+    expect(component.invoiceHeader[0].clickFlag).toBe(false);
+    expect(component.invoiceHeader[1].clickFlag).toBe(false);
+  });
+
+  it('should not modify clickFlag when invoiceHeader is empty', () => {
+    // Arrange
+    component.invoiceHeader = [];
+
+    // Act
+    component.resetAllFlag();
+
+    // Assert
+    expect(component.invoiceHeader.length).toBe(0);
+  });
