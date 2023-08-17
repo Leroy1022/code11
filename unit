@@ -66,3 +66,14 @@ it('should selected be counted when countSelected() is called ', () => {
 });
 
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
+it('should location be displayed when getLocationList() is called', () => {
+ 
+    const roleId = ' Id';
+    const data.invoiceData;
+    data.invoiceData.getLocationList.and.returnValue(of(data.invoiceData));
+ 
+    component.getLocationList();
+ 
+    expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
+    expect(component.facilitylist).toEqual(Result);
+  });
