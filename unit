@@ -75,5 +75,5 @@ it('should location be displayed when getLocationList() is called', () => {
     component.getLocationList();
  
     expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
-    expect(component.facilitylist).toEqual(Result);
+    expect(component.LocationList).toEqual(Result);
   });
