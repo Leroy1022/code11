@@ -29,7 +29,7 @@ it('should flagHeader update when changeflagheader() is called', () => {
 
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
 it('should clickFlag reset when resetAllFlag() is called', () => {
-     expect(invoiceHeader.clickFlag).toBe(true);
+     expect( clickFlag).toBe(true);
      component.resetAllFlag();
      expect(component.invoiceHeader[0].clickFlag).toBe(false);
      expect(component.invoiceHeader[1].clickFlag).toBe(false);
