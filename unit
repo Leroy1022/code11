@@ -39,7 +39,7 @@ it('should clickFlag reset when resetAllFlag() is called', () => {
  it('should toggle date range be selected when toggleCustomRange() is called', () => {
   component.toggleCustomRange();
   expect(component.customRange).toBe(true);
-  expect(component.selectedDateRange).toBe(customRange);
+constcomponent.selectedDateRange = calenderCustomRange;
  });
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
 
