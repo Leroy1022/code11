@@ -77,3 +77,14 @@ it('should location be displayed when getLocationList() is called', () => {
     expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
     expect(component.LocationList).toEqual(Result);
   });
+
+it('should provider list be displyed when getProviderList() is called', () => {
+  
+
+    ubmService.getProviderList.and.returnValue(of(result));
+
+    component.getProviderList();
+
+    expect(ubmService.getProviderList).toHaveBeenCalled();
+    expect(component.providerList).toEqual(result);
+  });
