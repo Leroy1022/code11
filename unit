@@ -42,3 +42,28 @@ it('should clickFlag reset when resetAllFlag() is called', () => {
   expect(component.selectedDateRange).toBe(calenderCustomRange);
  });
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
+
+it('should selectedRows be displayed whengetAllSelectedRows() is called', () => {
+   
+    component.result = [
+      { IsRowChecked: false }, { IsRowChecked: false }, ];
+    row.IsRowChecked = component.selectAllRows ;
+
+    component.countSelected();
+
+    component.getAllSelectedRows();
+
+    expect(component.result[0].IsRowChecked).toBe(true);
+    expect(component.result[1].IsRowChecked).toBe(true);
+    expect(component.countSelected).toHaveBeenCalled();
+  });
+
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
+it('should selected be counted when countSelected() is called ', () => {
+    
+    component.result = [ { IsRowChecked: true }, { IsRowChecked: false }, { IsRowChecked: true },];
+    component.countSelected();
+    expect(component.actionsClicked).toBe(false);
+    expect(component.selectedCount).toBe(2);
+  });
+----x-----x-----x-----x-----x-----x-----x-----x----x----x
