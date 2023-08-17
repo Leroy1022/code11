@@ -44,9 +44,8 @@ constcomponent.selectedDateRange = calenderCustomRange;
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
 
 it('should selectedRows be displayed whengetAllSelectedRows() is called', () => {
-   
-    component.result = [
-      { IsRowChecked: false }, { IsRowChecked: false }, ];
+   expect(component.result.IsRowChecked).toBe(false)
+    
     row.IsRowChecked = component.selectAllRows ;
 
     component.countSelected();
