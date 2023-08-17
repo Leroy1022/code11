@@ -59,10 +59,10 @@ it('should selectedRows be displayed whengetAllSelectedRows() is called', () => 
 
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
 it('should selected be counted when countSelected() is called ', () => {
-    
-    component.result = [ { IsRowChecked: true }, { IsRowChecked: false }, { IsRowChecked: true },];
+    component.result = [ { IsRowChecked: true }, { IsRowChecked: false }, { IsRowChecked: true }];
     component.countSelected();
     expect(component.actionsClicked).toBe(false);
     expect(component.selectedCount).toBe(2);
-  });
+});
+
 ----x-----x-----x-----x-----x-----x-----x-----x----x----x
