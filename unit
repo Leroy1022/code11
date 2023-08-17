@@ -88,3 +88,37 @@ it('should provider list be displyed when getProviderList() is called', () => {
     expect(ubmService.getProviderList).toHaveBeenCalled();
     expect(component.providerList).toEqual(result);
   });
+
+it('should Commodity list be displyed when getCommodityList()  is called', () => {
+  
+
+    ubmService.getCommodityList.and.returnValue(of(result));
+
+    component.getCommodityList();
+
+    expect(ubmService.getCommodityList).toHaveBeenCalled();
+    expect(component.CommodityList).toEqual(result);
+  });
+
+it('should UBMMeter list be displyed when getUBMMeterList()  is called', () => {
+  
+
+    ubmService.getUBMMeterList.and.returnValue(of(result));
+
+    component.getUBMMeterList();
+
+    expect(ubmService.getUBMMeterList).toHaveBeenCalled();
+    expect(component.UBMMeterList).toEqual(result);
+  });
+
+it('should Account list be displyed when getAccountList()  is called', () => {
+  
+
+    ubmService.getAccountList.and.returnValue(of(result));
+
+    component.getAccountList();
+
+    expect(ubmService.getAccountList).toHaveBeenCalled();
+    expect(component.AccountList).toEqual(result);
+  });
+
