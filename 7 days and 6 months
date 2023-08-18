@@ -1,36 +1,9 @@
-<input type="radio" name="pastDateOption" [(ngModel)]="isPastSevenDaysSelected" (ngModelChange)="onRadioButtonChange()"> Past Seven Days
-<input type="radio" name="pastDateOption" [(ngModel)]="isPastSevenDaysSelected" (ngModelChange)="onRadioButtonChange()"> Past Six Months
-
-pastDates: Date[] = [];
-  isPastSevenDaysSelected: boolean = true; // Default selection
-
-  constructor() {
-    this.calculatePastDates();
-  }
-
-  calculatePastDates(): void {
-    const today = new Date(); // Current date
-
-    if (this.isPastSevenDaysSelected) {
-      // Calculate past seven days
-      for (let i = 0; i < 7; i++) {
-        const pastDate = new Date(today);
-        pastDate.setDate(today.getDate() - i);
-        this.pastDates.push(pastDate);
-      }
-    } else {
-      // Calculate past six months
-      for (let i = 0; i < 6; i++) {
-        const pastDate = new Date(today);
-        pastDate.setMonth(today.getMonth() - i);
-        this.pastDates.push(pastDate);
-      }
-    }
-
-    this.pastDates.reverse(); // Reverse the array to get the past dates in ascending order
-  }
-
-  onRadioButtonChange(): void {
-    this.pastDates = []; // Clear previous dates
-    this.calculatePastDates();
-  }
+ it('should test Building list', ()=> {
+// given
+const restService TestBed.inject(UBMCommonService); = const allBuildingList: BuildingList[] [];
+spyon(restService, 'getAllBuildingList').and.returnValue(of (allBuildingList));
+// when
+component.getAllBuildingList();
+// then
+expect(component.allBuildingList.length).toBe(1);
+  });
