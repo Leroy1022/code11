@@ -67,3 +67,51 @@ it('should toggle Dropdown when toggleLocationDropdown() is  called', () => {
  
     expect(component.isLocationDropdownOpen).toBe(false);
   });
+
+it('should toggle Dropdown when toggleBuildingDropdown() is  called', () => {
+    component.isBuildingDropdownOpen = false;
+
+    component.toggleBuildingDropdown();
+
+    expect(component.isBuildingDropdownOpen).toBe(true);
+
+    component.toggleBuildingDropdown();
+
+    expect(component.isBuildingDropdownOpen).toBe(false);
+  });
+
+it('should toggle Dropdown when toggleProviderDropdown() is  called', () => {
+    component.isProviderDropdownOpen = false;
+
+    component.toggleProviderDropdown();
+
+    expect(component.isProviderDropdownOpen).toBe(true);
+
+    component.toggleProviderDropdown();
+
+    expect(component.isProviderDropdownOpen).toBe(false);
+  });
+
+it('should toggle Dropdown when toggleAccountDropdown() is  called', () => {
+    component.isAccountDropdownOpen = false;
+
+    component.toggleAccountDropdown();
+
+    expect(component.isAccountDropdownOpen).toBe(true);
+
+    component.toggleAccountDropdown();
+
+    expect(component.isAccountDropdownOpen).toBe(false);
+  });
+
+it('should toggle Dropdown when togglePremiseDropdown() is  called', () => {
+    component.isPremiseDropdownOpen = false;
+
+    component.togglePremiseDropdown();
+
+    expect(component.isPremiseDropdownOpen).toBe(true);
+
+    component.togglePremiseDropdown();
+
+    expect(component.isPremiseDropdownOpen).toBe(false);
+  });
