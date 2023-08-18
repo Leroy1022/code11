@@ -244,3 +244,27 @@ it('should  Dropdown closed when clickedoutsideLocation() is  called', () => {
      component.getSelectedAccount(value);
      expect (component.selectedAccount).toEqual(value);
      });
+
+
+
+it('should entry save when onSaveButtonClick() is called', () => {
+ 
+    component.editButtonClicked = false;
+    component.saveButtonClicked = true;
+ 
+    component.onSaveButtonClick();
+ 
+    expect(component.editButtonClicked).toBe(true);
+    expect(component.saveButtonClicked).toBe(false);
+  });
+
+  it('should entry edit when onEditButtonClick() is called', () => {
+ 
+    component.saveButtonClicked = false;
+    component.editButtonClicked = true;
+ 
+    component.onEditButtonClick();
+ 
+    expect(component.saveButtonClicked).toBe(true);
+    expect(component.editButtonClicked).toBe(false);
+  });
