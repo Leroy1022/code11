@@ -201,3 +201,46 @@ it('should  Dropdown closed when clickedoutsideLocation() is  called', () => {
  
     expect(component.isPremiseDropdownOpen).toBe(false);
   });      
+
+
+  it('should toggle Dropdown when dropDownBuilding() is  called', () => {
+    component.showBuildingDropdown = false;
+    component.dropDownBuilding();
+    expect(component.showBuildingDropdown).toBe(true);
+    component.dropDownBuilding();
+    expect(component.showBuildingDropdown).toBe(false);
+  });
+
+  it('should toggle Dropdown when getSelectedBuilding() is called', () => {
+     const value = "Location1";
+     component.getSelectedBuilding(value);
+     expect (component.selectedBuilding).toEqual(value);
+     }); 
+
+     it('should toggle Dropdown when dropDownProvider() is  called', () => {
+    component.showProviderDropdown = false;
+    component.dropDownProvider();
+    expect(component.showProviderDropdown).toBe(true);
+    component.dropDownProvider();
+    expect(component.showProviderDropdown).toBe(false);
+  }); 
+
+  it('should toggle Dropdown when getSelectedProvider() is called', () => {
+     const value = "Location1";
+     component.getSelectedProvider(value);
+     expect (component.selectedProvider).toEqual(value);
+     }); 
+
+ it('should toggle Dropdown when dropDownAccount() is  called', () => {
+    component.showAccountDropdown = false;
+    component.dropDownAccount();
+    expect(component.showAccountDropdown).toBe(true);
+    component.dropDownAccount();
+    expect(component.showAccountDropdown).toBe(false);
+  }); 
+
+  it('should toggle Dropdown when getSelectedAccount() is called', () => {
+     const value = "Location1";
+     component.getSelectedAccount(value);
+     expect (component.selectedAccount).toEqual(value);
+     });
