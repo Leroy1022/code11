@@ -141,3 +141,11 @@ expect(component.accountsMappingList.length).toBe(1);
  
     expect(component.showLocationsDropdown).toBe(false);
   });
+
+ it('should toggle Dropdown when getSelectedLocation() is  called', () => {
+    const restService TestBed.inject(UBMCommonService); 
+    spyOn(restService, 'getSelectedLocation').and.returnValue(of (selectedLocation));
+    component.getSelectedLocation(value);
+    expect(component.selectedLocation).toBe(value);
+  });
+
