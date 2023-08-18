@@ -115,3 +115,15 @@ it('should toggle Dropdown when togglePremiseDropdown() is  called', () => {
 
     expect(component.isPremiseDropdownOpen).toBe(false);
   });
+
+
+it('should test GetAccountsMappingList list', ()=> {
+// given
+const restService TestBed.inject(UBMCommonService); 
+const AccountsMappingList: accountsMappingList[] [];
+spyOn(restService, 'GetAccountsMappingList').and.returnValue(of (accountsMappingList));
+// when
+component.GetAccountsMappingList(roleId);
+// then
+expect(component.accountsMappingList.length).toBe(1);
+  });
