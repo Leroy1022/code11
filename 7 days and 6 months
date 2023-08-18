@@ -30,3 +30,14 @@ component.getAccountList();
 // then
 expect(component.accountList.length).toBe(1);
   });
+
+it('should test UBMMeter list', ()=> {
+// given
+const restService TestBed.inject(UBMCommonService); 
+const UBMMeter: UBMMeterList[] [];
+spyOn(restService, 'getUBMMeterList').and.returnValue(of (UBMMeterList));
+// when
+component.getUBMMeterList();
+// then
+expect(component.UBMMeterList.length).toBe(1);
+  });
