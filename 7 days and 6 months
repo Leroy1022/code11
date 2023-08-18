@@ -41,3 +41,15 @@ component.getUBMMeterList();
 // then
 expect(component.UBMMeterList.length).toBe(1);
   });
+
+
+it('should test Commodity list', ()=> {
+// given
+const restService TestBed.inject(UBMCommonService); 
+const CommodityList: commodityList[] [];
+spyOn(restService, 'getCommodityList').and.returnValue(of (commodityList));
+// when
+component.getCommodityList();
+// then
+expect(component.commodityList.length).toBe(1);
+  });
