@@ -53,3 +53,17 @@ component.getCommodityList();
 // then
 expect(component.commodityList.length).toBe(1);
   });
+
+
+it('should toggle Dropdown when toggleLocationDropdown() is  called', () => {
+ 
+    component.isLocationDropdownOpen = false;
+ 
+    component.toggleLocationDropdown();
+ 
+    expect(component.isLocationDropdownOpen).toBe(true);
+ 
+    component.toggleLocationDropdown();
+ 
+    expect(component.isLocationDropdownOpen).toBe(false);
+  });
