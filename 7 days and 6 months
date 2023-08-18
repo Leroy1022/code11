@@ -156,3 +156,48 @@ it('should toggle Dropdown when dropDownBuilding() is  called', () => {
     component.dropDownBuilding();
     expect(component.showBuildingDropdown).toBe(false);
   });
+
+it('should  Dropdown closed when clickedoutsideLocation() is  called', () => {
+ 
+    component.isLocationDropdownOpen = true;
+ 
+    component.clickedoutsideLocation();
+ 
+    expect(component.isLocationDropdownOpen).toBe(false);
+  });
+
+ it('should  Dropdown closed when clickedoutsideBuilding() is  called', () => {
+ 
+    component.isBuildingDropdownOpen = true;
+ 
+    component.clickedoutsideBuilding();
+ 
+    expect(component.isBuildingDropdownOpen).toBe(false);
+  });  
+
+   it('should  Dropdown closed when clickedOutsideProvider() is  called', () => {
+ 
+    component.isProviderDropdownOpen = true;
+ 
+    component.clickedOutsideProvider();
+ 
+    expect(component.isProviderDropdownOpen).toBe(false);
+  });   
+
+  it('should  Dropdown closed when clickedOutsideAccount() is  called', () => {
+ 
+    component.isAccountDropdownOpen = true;
+ 
+    component.clickedOutsideAccount();
+ 
+    expect(component.isAccountDropdownOpen).toBe(false);
+  });     
+
+  it('should  Dropdown closed when clickedOutsidePremise() is  called', () => {
+ 
+    component.isPremiseDropdownOpen = true;
+ 
+    component.clickedOutsideAccount();
+ 
+    expect(component.isPremiseDropdownOpen).toBe(false);
+  });      
