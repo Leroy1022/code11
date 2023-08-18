@@ -149,3 +149,10 @@ expect(component.accountsMappingList.length).toBe(1);
     expect(component.selectedLocation).toBe(value);
   });
 
+it('should toggle Dropdown when dropDownBuilding() is  called', () => {
+    component.showBuildingDropdown = false;
+    component.dropDownBuilding();
+    expect(component.showBuildingDropdown).toBe(true);
+    component.dropDownBuilding();
+    expect(component.showBuildingDropdown).toBe(false);
+  });
