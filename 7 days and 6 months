@@ -127,3 +127,17 @@ component.GetAccountsMappingList(roleId);
 // then
 expect(component.accountsMappingList.length).toBe(1);
   });
+
+
+ it('should toggle Dropdown when dropDownLocation() is  called', () => {
+ 
+    component.showLocationsDropdown = false;
+ 
+    component.dropDownLocation();
+ 
+    expect(component.showLocationsDropdown).toBe(true);
+ 
+    component.dropDownLocation();
+ 
+    expect(component.showLocationsDropdown).toBe(false);
+  });
