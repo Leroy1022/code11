@@ -19,3 +19,14 @@ component.getProviderList();
 // then
 expect(component.providerList.length).toBe(1);
   }); 
+
+ it('should test Account list', ()=> {
+// given
+const restService TestBed.inject(UBMCommonService); 
+const AccountList: accountList[] [];
+spyOn(restService, 'getAccountList').and.returnValue(of (accountList));
+// when
+component.getAccountList();
+// then
+expect(component.accountList.length).toBe(1);
+  });
