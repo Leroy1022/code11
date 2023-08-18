@@ -1,9 +1,10 @@
- it('should test Building list', ()=> {
+  it('should test Building list', ()=> {
 // given
-const restService TestBed.inject(UBMCommonService); = const allBuildingList: BuildingList[] [];
+const restService TestBed.inject(UBMCommonService);
+const allBuildingList: BuildingList[] [];
 spyon(restService, 'getAllBuildingList').and.returnValue(of (allBuildingList));
 // when
 component.getAllBuildingList();
 // then
 expect(component.allBuildingList.length).toBe(1);
-  });
+  }); 
