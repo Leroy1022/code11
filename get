@@ -1,11 +1,18 @@
  it('should location be displayed when getLocationList() is called', () => {
  
     const roleId = 'RoleId';
-    const data.invoiceData;
-    data.invoiceData.getLocationList.and.returnValue(of(data.invoiceData));
- 
-    component.getLocationList();
- 
-    expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
+    const restService TestBed.inject(UBMCommonService);
+    spyOn(restService, 'getLocationList').and.returnValue(of (facilitylist));
+    component.getLocationList(roleId);
+     expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
     expect(component.facilitylist).toEqual(Result);
   });
+
+
+ it('should CurrencySymbolList appear when getCurrencySymbolList() is  called', () => {
+    const restService TestBed.inject(UBMCommonService); 
+    spyOn(restService, 'getCurrencySymbolList').and.returnValue(of (currencySymbolList));
+    component.getCurrencySymbolList(value);
+    expect(component.currencySymbolList).toBe(value);
+  });
+
