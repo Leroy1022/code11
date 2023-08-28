@@ -1,0 +1,70 @@
+it('should  Dropdown closed when clickedoutsideLocation() is  called', () => {
+ 
+    component.isLocationDropdownOpen = true;
+ 
+    component.clickedoutsideLocation();
+ 
+    expect(component.isLocationDropdownOpen).toBe(false);
+  });
+
+  it('should  Dropdown closed when clickedoutsideBuilding() is  called', () => {
+ 
+    component.isBuildingDropdownOpen = true;
+ 
+    component.clickedoutsideBuilding();
+ 
+    expect(component.isBuildingDropdownOpen).toBe(false);
+  });  
+
+   it('should  Dropdown closed when clickedOutsideProvider() is  called', () => {
+ 
+    component.isProviderDropdownOpen = true;
+ 
+    component.clickedOutsideProvider();
+ 
+    expect(component.isProviderDropdownOpen).toBe(false);
+  });   
+
+  it('should  Dropdown closed when clickedOutsideAccount() is  called', () => {
+ 
+    component.isAccountDropdownOpen = true;
+ 
+    component.clickedOutsideAccount();
+ 
+    expect(component.isAccountDropdownOpen).toBe(false);
+  });     
+
+  it('should  Dropdown closed when clickedOutsidePremise() is  called', () => {
+ 
+    component.isPremiseDropdownOpen = true;
+ 
+    component.clickedOutsideAccount();
+ 
+    expect(component.isPremiseDropdownOpen).toBe(false);
+  });      
+
+  it('should entry save when onSaveButtonClick() is called', () => {
+ 
+    component.editButtonClicked = false;
+    component.saveButtonClicked = true;
+ 
+    component.onSaveButtonClick();
+ 
+    expect(component.editButtonClicked).toBe(true);
+    expect(component.saveButtonClicked).toBe(false);
+  });
+
+ 
+
+  it('should entry edit when onEditButtonClick() is called', () => {
+ 
+    component.saveButtonClicked = false;
+    component.editButtonClicked = true;
+ 
+    component.onEditButtonClick();
+ 
+    expect(component.saveButtonClicked).toBe(true);
+    expect(component.editButtonClicked).toBe(false);
+  });
+
+
