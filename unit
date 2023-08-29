@@ -192,3 +192,115 @@ it('should set utilityType to "Multiple" when getCommodityByAccNo() is called ',
 
     expect(component.utilityType).toBe('');
   });
+
+
+
+
+  it('should set InvoiceInformation to English when getLanguageId() is 1', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(1);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationEnglish');
+  });
+
+  it('should set InvoiceInformation to Chinese  when getLanguageId() is 2', () => {
+  
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(2);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationChinese');
+  });
+
+  it('should set InvoiceInformation to German when getLanguageId() is 3', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(3);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationGerman');
+  });
+
+ it('should set InvoiceInformation to Spanish when getLanguageId() is 4', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(4);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationSpanish');
+  });
+
+it('should set InvoiceInformation to Italian when getLanguageId() is 5', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(5);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationItalian');
+  });
+
+it('should set InvoiceInformation to Dutch when getLanguageId() is 6', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(6);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationDutch');
+  });
+
+it('should set InvoiceInformation to Japanese when getLanguageId() is 7', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(7);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationJapanese');
+  });
+
+it('should set InvoiceInformation to Pt when getLanguageId() is 8', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(8);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationPt');
+     });
+
+     
+it('should set InvoiceInformation to French when getLanguageId() is 9', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(9);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationFrench');
+     });
+
+it('should set InvoiceInformation to Korean when getLanguageId() is 10', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(10);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationKorean');
+     });
+
+it('should set InvoiceInformation to Arabic when getLanguageId() is 10', () => {
+ 
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(10);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationArabic');
+     });
+
+  it('should set InvoiceInformation to Hebrew when getLanguageId() is 12', () => {
+    // Arrange
+    spyOn(component.languageService, 'getLanguageId').and.returnValue(12);
+
+    component.getInvoiceInformationTranslationValues();
+
+    expect(component.InvoiceInformation).toEqual('InvoiceInformationHebrew');
+  });
