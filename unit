@@ -122,3 +122,32 @@ it('should Account list be displyed when getAccountList()  is called', () => {
     expect(component.AccountList).toEqual(result);
   });
 
+
+
+it('should update provider properties when  updateProviderList() is called ', () => {
+ 
+    const tempAccountsMappingList = [];
+    component.tempAccountsMappingList = mockTempAccountsMappingList;
+ 
+    component.updateProviderList();
+ 
+    expect(component.providerList).toEqual([]);
+    expect(component.distinctProviderList).toEqual([]);
+    expect(component.providerclicked).toBe(false);
+    expect(component.invoiceInformation.providerId).toBe(0);
+    expect(component.providerName).toBe('');
+  });
+
+it('should update location when updateAccountNumberList() is  called', () => {
+ 
+    const accountNumberList   = [];
+    component.tempAccountsMappingList = accountNumberList  ;
+
+    component.updateProviderList();
+
+    expect(component.accountNumberList).toEqual([]);
+    expect(component.distinctAccountNumberList).toEqual([]);
+    expect(component.accountNumberClicked).toBe(false);
+    expect(component.invoiceInformation.accountNumber).toBe('');
+    expect(component.accountName).toBe('');
+  });
