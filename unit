@@ -151,3 +151,44 @@ it('should update location when updateAccountNumberList() is  called', () => {
     expect(component.invoiceInformation.accountNumber).toBe('');
     expect(component.accountName).toBe('');
   });
+
+
+it('should set utilityType to "Multiple" when getCommodityByAccNo() is called ', () => {
+ 
+    const AccountsMappingList = [
+      { accountNumber: 'Account1', commodityName: 'Commodity1' },
+      { accountNumber: 'Account1', commodityName: 'Commodity2' },
+    ];
+    component.accountsMappingList = AccountsMappingList;
+    component.invoiceInformation.accountNumber = 'Account1';
+ 
+    component.getCommodityByAccNo();
+ 
+    expect(component.utilityType).toBe('Multiple');
+  });
+
+  it('should set utilityType to a single commodity when getCommodityByAccNo() is called', () => {
+  
+    const  AccountsMappingList = [
+      { accountNumber: 'Account1', commodityName: 'Commodity1' },
+    ];
+    component.accountsMappingList = AccountsMappingList;
+    component.invoiceInformation.accountNumber = 'Account1';
+
+    component.getCommodityByAccNo();
+
+    expect(component.utilityType).toBe('Commodity1');  
+  });
+
+  it('should set utilityType to an empty string when getCommodityByAccNo() is called', () => {
+ 
+    const AccountsMappingList = [
+      { accountNumber: 'Account2', commodityName: 'Commodity1' },
+    ];
+    component.accountsMappingList = AccountsMappingList;
+    component.invoiceInformation.accountNumber = 'Account1';
+
+    component.getCommodityByAccNo();
+
+    expect(component.utilityType).toBe('');
+  });
