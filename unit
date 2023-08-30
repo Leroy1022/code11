@@ -353,3 +353,31 @@ const SortProperty: sortProperty[] [];
     expect(sortedChildResult[1].sortProperty).toBe(2);
     expect(sortedChildResult[2].sortProperty).toBe(3);
   });
+
+
+it('should reset filters for the retainFilterArray() ', () => {
+  
+    const invoice.name = { name: 'ColumnName' };
+    component.distinctFilteredValues = [
+      { IsChecked: false },
+      { IsChecked: true },
+      { IsChecked: false },
+    ];
+    component.retainFilterArray();
+    component.FilterClicked = true;
+    component.searchText = 'FilterText';
+    component.selectAllFilter = false;
+    component.inderminateFilter = true;
+    component.isFilterApplyDisable = true;
+
+    component.resetGridfilter(invoice);
+
+    expect(invoice.name).toBe('ColumnName');
+    expect(component.selectAllFilter).toBe(true);
+    expect(component.inderminateFilter).toBe(false);
+    expect(component.isFilterApplyDisable).toBe(false);
+    expect(component.distinctFilteredValues.every((s) => s.IsChecked === true)).toBe(true);
+    expect(component.retainFilterArray.some((s) => s.name === 'ColumnName' && s.isDeleteFilter === true)).toBe(true);
+    expect(component.FilterClicked).toBe(false);
+    expect(component.searchText).toBe('');
+  });
