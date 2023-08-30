@@ -331,3 +331,25 @@ it('should location be displayed when getLocationList() is called', () => {
     expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
     expect(component.facilitylist).toEqual(Result);
   });
+
+
+it('should  sortfilterpopup reflect false when closepopup() is called', () => {
+    component.closepopup();
+    expect(component.sortfilterpopup).toBe(false);
+  });
+
+  it('should  childResult get sorted when  sortChildDataAscBy() is called ', () => {
+    
+   const restService TestBed.inject(UBMCommonService); 
+const SortProperty: sortProperty[] [];
+    component.childResult =  ChildResult;
+    component.sortOrder = 1;
+ 
+    component.sortChildDataAscBy(columnName);
+ 
+    const sortedChildResult = component.childResult;
+    expect(sortedChildResult.length).toBe(3);
+    expect(sortedChildResult[0].sortProperty).toBe(1);
+    expect(sortedChildResult[1].sortProperty).toBe(2);
+    expect(sortedChildResult[2].sortProperty).toBe(3);
+  });
