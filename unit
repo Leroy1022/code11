@@ -399,3 +399,16 @@ it('should  component reset when reset() is called', () => {
     expect(component.customRange).toBe(false);
     expect(component.showDateRange).toBe(false);
   });
+
+
+it('should component apply when apply() is called', () => {
+
+   component.retainInvoiceYearList()
+    component.Year;
+    component.apply();
+    expect(component.isLoading).toBe(true);
+    expect(component.invoiceYearApplyClicked).toBe(true);
+    expect(component.showDropDown).toBeUndefined(); 
+    expect(component.tempResult).toEqual([1]); 
+    component. getInvoiceDetails();
+  });  
