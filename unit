@@ -319,3 +319,15 @@ const RemoveFromRetainFilter: removeFromRetainFilter[] [];
     expect(component.retainFilterArray.length).toBe(1);
     expect(component.retainFilterArray[0].name).toBe('Filter1');
   }); 
+
+it('should location be displayed when getLocationList() is called', () => {
+ 
+    const roleId = 'RoleId';
+    const data.invoiceData;
+    data.invoiceData.getLocationList.and.returnValue(of(data.invoiceData));
+ 
+    component.getLocationList();
+ 
+    expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
+    expect(component.facilitylist).toEqual(Result);
+  });
