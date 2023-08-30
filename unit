@@ -304,3 +304,18 @@ it('should set InvoiceInformation to Arabic when getLanguageId() is 10', () => {
 
     expect(component.InvoiceInformation).toEqual('InvoiceInformationHebrew');
   });
+
+
+
+
+it('should set invoice.IsFilter be retained when RemoveFromRetainFilter() id called', () => {
+ 
+    const restService TestBed.inject(UBMCommonService); 
+const RemoveFromRetainFilter: removeFromRetainFilter[] [];
+ 
+    component.removeFromRetainFilter('Filter2', invoice);
+ 
+    expect(invoice.IsFilter).toBe(false);
+    expect(component.retainFilterArray.length).toBe(1);
+    expect(component.retainFilterArray[0].name).toBe('Filter1');
+  }); 
