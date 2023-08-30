@@ -412,3 +412,17 @@ it('should component apply when apply() is called', () => {
     expect(component.tempResult).toEqual([1]); 
     component. getInvoiceDetails();
   });  
+
+
+it('should location be displayed when GetAccountsMappingList() is called', () => {
+ 
+    const roleId = 'RoleId';
+    const data.invoiceData;
+    data.invoiceData.GetAccountsMappingList.and.returnValue(of(data.invoiceData));
+ 
+    component.GetAccountsMappingList();
+ 
+    expect(data.invoiceData.GetAccountsMappingList).toHaveBeenCalledWith(roleId);
+    expect(component.accountsMappingList).toEqual(Result);
+    component.GetAllDropdownLists()
+  });
