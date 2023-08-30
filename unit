@@ -381,3 +381,21 @@ it('should reset filters for the retainFilterArray() ', () => {
     expect(component.FilterClicked).toBe(false);
     expect(component.searchText).toBe('');
   });
+
+it('should  component reset when reset() is called', () => {
+
+    component.invoiceYearApplyClicked = true;
+    component.selectedStartDate = 'moment()';
+    component.selectedEndDate = 'moment()';
+    component.customRange = true;
+    component.showDateRange = true;
+
+    component.reset();
+
+    // Assert
+    expect(component.invoiceYearApplyClicked).toBe(false);
+    expect(component.selectedStartDate).toBeUndefined();
+    expect(component.selectedEndDate).toBeUndefined();
+    expect(component.customRange).toBe(false);
+    expect(component.showDateRange).toBe(false);
+  });
