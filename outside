@@ -68,3 +68,33 @@ it('should  Dropdown closed when clickedoutsideLocation() is  called', () => {
   });
 
 
+
+
+ it('should Location Change wen onLocationChange() is called ', () => {
+
+    const restService TestBed.inject(UBMCommonService); 
+  const Location: location[] [];
+    spyOn(component, 'resetDropdown');
+    spyOn(component, 'updateProviderList');
+    spyOn(component, 'updateBuildingList');
+    spyOn(component, 'updateAccountNumberList');
+
+
+    component.onLocationChange(locationId.invoiceData);
+
+    expect(component.locationClicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe(invoiceData.locationId);
+    expect(component.locationName).toBe(invoiceData.facilityName);
+    expect(component.searchTextLocation).toBe('');
+    expect(component.isLocationDropdownOpen).toBe(false); 
+
+    expect(component.resetDropdown).toHaveBeenCalled();
+
+    expect(component.providerSelected).toBe(false);
+    expect(component.buildingSelected).toBe(false);
+    expect(component.accountSelected).toBe(false);
+
+    expect(component.updateProviderList).toHaveBeenCalled();
+    expect(component.updateBuildingList).toHaveBeenCalled();
+    expect(component.updateAccountNumberList).toHaveBeenCalled();
+  });
