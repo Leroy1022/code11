@@ -18,3 +18,14 @@ it('should  commonService destory when ngOnDestroy() is called', () => {
     expect(commonServiceSpy.setInvoiceSummaryEnabled).toHaveBeenCalledWith(false);
     expect(commonServiceSpy.enableUtilitySection).toHaveBeenCalledWith(false);
   });
+
+it('should get accountsMappinglist is display when GetAccountsMappingList() is called', () => {
+    
+    ubmServiceSpy.getAccountMappingList.and.returnValue(of(AccountMappingList));
+    expect(UBMService.getAccountMappingList).toHaveBeenCalledWith(false);
+    component.GetAccountsMappingList(roleId);
+    expect(ubmServiceSpy.getAccountMappingList).toHaveBeenCalledWith(roleId);
+    expect(component.accountsMappingList).toEqual(AccountMappingList);
+    component.GetAllDropdownLists();
+  });
+
