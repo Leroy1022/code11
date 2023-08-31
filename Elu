@@ -1,31 +1,11 @@
- <label>
-            <input type="radio" name="dateRange" value="lastMonth" [(ngModel)]="selectedOption" (change)="onRadioChange('lastMonth')"> Past Month
-          </label>
-          <input type="radio" name="dateRange" [(ngModel)]="isPastSevenDaysSelected" (ngModelChange)="onRadioButtonChange()"> Past Six Months
-selectedOption: string | undefined ;
-  pastDates: Date[] = [];
-  isPastSevenDaysSelected: boolean = true;
-  calculatePastDates(): void {
-    const today = new Date();
-    this.pastDates = [];
-    if (this.isPastSevenDaysSelected == false)
-    for (let i = 0; i < 6; i++) {
-      const pastDate = new Date(today);
-      pastDate.setMonth(today.getMonth() - i);
-      this.pastDates.push(pastDate);
-    }
-    this.pastDates.reverse(); // Reverse the array to get the past dates in ascending order
-  
-  }
-  onRadioButtonChange(): void {
-    this.pastDates = []; // Clear previous dates
-    this.calculatePastDates();
-  }
-  onRadioChange(option: string): void {
-    if (option === 'lastMonth') {
-      const today = new Date(); // Current date
-      const lastMonthDate = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-      this.selectedOption = lastMonthDate.toISOString(); // Store the last month date as a string
-    } 
-  }
-  
+it('should location be displayed when getLocationList() is called', () => {
+ 
+    const roleId = 'RoleId';
+    const data.invoiceData;
+    data.invoiceData.getLocationList.and.returnValue(of(data.invoiceData));
+ 
+    component.getLocationList();
+ 
+    expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
+    expect(component.facilitylist).toEqual(Result);
+  });
