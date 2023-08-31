@@ -9,3 +9,12 @@ it('should location be displayed when getLocationList() is called', () => {
     expect(data.invoiceData.getLocationList).toHaveBeenCalledWith(roleId);
     expect(component.facilitylist).toEqual(Result);
   });
+
+it('should  commonService destory when ngOnDestroy() is called', () => {
+
+    component.ngOnDestroy();
+
+    expect(commonServiceSpy.setInvoiceSummaryExpanded).toHaveBeenCalledWith(false);
+    expect(commonServiceSpy.setInvoiceSummaryEnabled).toHaveBeenCalledWith(false);
+    expect(commonServiceSpy.enableUtilitySection).toHaveBeenCalledWith(false);
+  });
