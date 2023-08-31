@@ -1,0 +1,22 @@
+
+  it('should update building properties when updateBuildingList() is called ', 0)=>{
+const tempAccountsMappingList: AccountsMapping[] = []; 
+component.tempAccountsMappingList = tempAccountsMappingList;
+component.updatebuildingList();
+expect (component.buildingList).toEqual([]);
+expect (component.distinctbuildingList).toEqual([]); 
+expect (component.buildingclicked).toBe(false);
+expect (component.invoiceInformation, buildingId).toBe(0);
+expect (component, buildingName).toBe('');
+});
+
+  it('should update provider properties when updateProviderList() is called ', 0)=>{
+const tempAccountsMappingList: AccountsMapping[] = []; 
+component.tempAccountsMappingList = tempAccountsMappingList;
+component.updateProviderList();
+expect (component.providerList).toEqual([]);
+expect (component.distinctproviderList).toEqual([]); 
+expect (component.providerclicked).toBe(false);
+expect (component.invoiceInformation, providerId).toBe(0);
+expect (component, providerName).toBe('');
+});
