@@ -29,3 +29,34 @@ it('should get accountsMappinglist is display when GetAccountsMappingList() is c
     component.GetAllDropdownLists();
   });
 
+
+
+it('should populate locationList and  GetAllDropdownLists();', () => {
+const tempAccountsMappingList: AccountsMapping[] = []; 
+component.tempAccountsMappingList = tempAccountsMappingList;
+component.GetAllDropdownLists();
+component.locationList  = tempAccountsMappingList;
+component.distinctlocationList = component.locationList.filter((arr, index, self) =>
+      index === self.findIndex((t) => t.facilityName === arr.facilityName && t.locationId === arr.locationId)
+    );
+    expect(component.distinctlocationList).toEqual(facilityName);  
+   
+   component.providerList   = tempAccountsMappingList;
+component.distinctProviderList = component.providerList.filter((arr, index, self) =>
+      index === self.findIndex((t) => t.providerName === arr.providerName && t.providerId === arr.providerId)
+    );
+    expect(component.distinctBroviderList).toEqual(providerName);  
+
+    component.buildingList   = tempAccountsMappingList;
+component.distinctBuildingList = component.buildingList.filter((arr, index, self) =>
+      index === self.findIndex((t) => t.buildingName === arr.buildingName && t.buildingId === arr.buildingId)
+    );
+    expect(component.distinctBuildingList).toEqual(buildingName);  
+
+    component.accountNumbersList   = tempAccountsMappingList;
+component.distinctAccountNumbersList = component.accountNumbersList.filter((arr, index, self) =>
+      index === self.findIndex((t) => t.accountNumbersName === arr.accountNumbersName && t.accountNumbersId === arr.accountNumbersId)
+    );
+    expect(component.distinctAccountNumbersList).toEqual(accountNumbersName);    
+    
+});
