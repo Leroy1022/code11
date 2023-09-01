@@ -60,3 +60,9 @@ component.distinctAccountNumbersList = component.accountNumbersList.filter((arr,
     expect(component.distinctAccountNumbersList).toEqual(accountNumbersName);    
     
 });
+
+it('should log an error when GetAccountsMappingList() fails', ()=>{
+const errorMessage = "Error fetching the Accounts Mapping list!!!"; mockUBMService.GetAccountsMappingList.and.returnValue (throwError(() =>errorMessage)); spyon(console, 'log');
+component.GetAccountsMappingList();
+expect (console.log).toHaveBeenCalledwith(errorMessage);
+});
