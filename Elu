@@ -66,3 +66,38 @@ const errorMessage = "Error fetching the Accounts Mapping list!!!"; mockUBMServi
 component.GetAccountsMappingList();
 expect (console.log).toHaveBeenCalledwith(errorMessage);
 });
+
+it('should building update when onBuildingChange is called', () => {
+  
+    component.tempAccountsMappingList = component.accountsMappingList;
+    component.onBuildingChange(building);
+    expect(component.buildingclicked).toBe(true);
+    expect(component.invoiceInformation.buildingId).toBe(1);
+    expect(component.buildingName).toBe('BuildingName');
+    expect(component.searchTextBuilding).toBe('');
+    expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen);
+ 
+  });
+it('should provider update when onProviderChange() is called', () => {
+  
+    component.tempAccountsMappingList = component.accountsMappingList;
+    component.onProviderChange(provider);
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe(1);
+    expect(component.providerName).toBe('ProviderName');
+    expect(component.searchTextProvider).toBe('');
+    expect(component.isProviderDropdownOpen).toBe(component.isProviderDropdownOpen);
+ 
+  });
+
+it('should account update when onAccountChange() is called', () => { 
+  
+    component.tempAccountsMappingList = component.accountsMappingList;
+    component.onAccountChange(value);
+    expect(component.accountclicked).toBe(true);
+    expect(component.invoiceInformation.accountId).toBe(1);
+    expect(component.accountName).toBe('accountName');
+    expect(component.searchTextaccount).toBe('');
+    expect(component.isaccountDropdownOpen).toBe(component.isaccountDropdownOpen);
+ 
+  });
