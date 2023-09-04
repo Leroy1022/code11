@@ -57,3 +57,11 @@ it('should select all filter values when getselectedAllFilterData() is called', 
     expect(component.inderminateFilter).toBeFalse();
     expect(component.isFilterApplyDisable).toBeFalse();
   });
+
+it('should select all filter values when toggleFilterSelection() is called', () => {
+    // Arrange
+    const filterResult = "filterResult"; 
+    component.toggleFilterSelection("FilterResult");
+    expect(component.selectAllFilter).toBeTrue();
+    expect(component.inderminateFilter).toBeFalse();
+  });
