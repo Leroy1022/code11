@@ -5,3 +5,12 @@ it('should customers range be selected when toggleCustomRange() is called"', () 
 
   expect(component.selectedDateRange).toBe('calenderCustomRange');
 });
+
+it('should datesUpdated()"', () => {
+  const event = 'Event';
+
+  component.datesUpdated();
+  expect(component.showDateRange).toBe(true);
+  expect(component.selectedStartDate).toBe('moment(Event.startDate)');
+  expect(component.selectedEndDate).toBe('moment(Event.endDate)');
+});
