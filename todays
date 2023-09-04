@@ -1,4 +1,4 @@
-it('should toggleCustomRange()"', () => {
+it('should customers range be selected when toggleCustomRange() is called"', () => {
   component.toggleCustomRange();
   
   expect(component.customRange).toBe(true);
