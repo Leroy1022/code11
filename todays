@@ -1,0 +1,7 @@
+it('should toggleCustomRange()"', () => {
+  component.toggleCustomRange();
+  
+  expect(component.customRange).toBe(true);
+
+  expect(component.selectedDateRange).toBe('calenderCustomRange');
+});
