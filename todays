@@ -32,3 +32,4 @@ it('should FilterData be selected when getselectedFilterData() is called"', () =
   expect(component.isFilterApplyDisable).toBe(false);
   component.toggleFilterSelection(filterResult)
 });
+
