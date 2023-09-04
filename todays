@@ -65,3 +65,13 @@ it('should select all filter values when toggleFilterSelection() is called', () 
     expect(component.selectAllFilter).toBeTrue();
     expect(component.inderminateFilter).toBeFalse();
   });
+
+ it('should toggle disable when toggleDefaultState() is called', () => {
+    // Arrange
+    component.invoiceYearApplyClicked = false;
+    expect(component.isAllchecked).toEqual(component.Year);
+
+    component.toggleDefaultState();
+
+    expect(component.buttonsDisabled).toBeFalse();
+  });
