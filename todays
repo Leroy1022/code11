@@ -6,7 +6,7 @@ it('should customers range be selected when toggleCustomRange() is called"', () 
   expect(component.selectedDateRange).toBe('calenderCustomRange');
 });
 
-it('should datesUpdated()"', () => {
+it('should Dates update when datesUpdated() is called"', () => {
   const event = 'Event';
 
   component.datesUpdated();
