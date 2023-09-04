@@ -75,3 +75,15 @@ it('should select all filter values when toggleFilterSelection() is called', () 
 
     expect(component.buttonsDisabled).toBeFalse();
   });
+
+it('should InvoiceYear be reset when resetInvoiceYear() is called"', () => {
+
+  component.year();
+  expect(component.isFilterApplyDisable).toBe(false);
+  expect(component.showDateRange).toBe(false);
+  component.resetInvoiceYear();
+   
+    expect(component.checkedList).toBeTrue();
+     expect(component.checkedList) .toEqual (component.Year);
+    expect(component.Year.filter((v: any) => v.IsYearDisabled)).toBeTrue();
+});
