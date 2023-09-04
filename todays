@@ -14,3 +14,14 @@ it('should Dates update when datesUpdated() is called"', () => {
   expect(component.selectedStartDate).toBe('moment(Event.startDate)');
   expect(component.selectedEndDate).toBe('moment(Event.endDate)');
 });
+
+it('should Date range resert when resetDateRange() is called"', () => {
+    component.resetDateRange();
+  expect(component.showDateRange).toBe(false);
+  expect(component.isFilterApplyDisable).toBe(false);
+   expect(component.selectedDateRange).toBe('selectAll');
+   expect(component.selectedDates).toBe({startDate:moment},{endDate:moment});
+  expect(component.showDateRange).toBe(true);
+  expect(component.selectedStartDate).toBe('moment(component.selectedDates.startDate)');
+  expect(component.selectedEndDate).toBe('moment(component.selectedDates.endDate)');
+});
