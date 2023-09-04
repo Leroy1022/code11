@@ -87,3 +87,13 @@ it('should InvoiceYear be reset when resetInvoiceYear() is called"', () => {
      expect(component.checkedList) .toEqual (component.Year);
     expect(component.Year.filter((v: any) => v.IsYearDisabled)).toBeTrue();
 });
+
+
+it('should set toggleMenu()is called', () => {
+ 
+  component.Year.forEach((year) => (year.IsChecked = true));
+ 
+  component.toggleMenu();
+ 
+  expect(component.buttonsDisabled).toBe(true);
+}); 
