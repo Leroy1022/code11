@@ -97,3 +97,11 @@ it('should set toggleMenu()is called', () => {
  
   expect(component.buttonsDisabled).toBe(true);
 }); 
+
+it('should toggle expand when toggleRowMenu()is called', () => {
+ 
+  const data = { IsRowExpanded: false };
+  component.toggleRowMenu();
+ 
+  expect(data.IsRowExpanded).toBe(component.data.IsRowExpanded);
+}); 
