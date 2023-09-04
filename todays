@@ -33,3 +33,12 @@ it('should FilterData be selected when getselectedFilterData() is called"', () =
   component.toggleFilterSelection(filterResult)
 });
 
+it('should UpdatedDateTime be selected when getselectedUpdatedDateTime() is called"', () => {
+  component.getselectedUpdatedDateTime();
+  expect(component.isFilterApplyDisable).toBe(false);
+  expect(component.showDateRange).toBe(false);
+  component.getselectedUpdatedDateTime();
+  expect(component.selectedDateRange).toBe(calenderCustomRange);
+  expect(component.retainSelectedRadioState).toBe(calenderCustomRange);
+  expect(component.showDateRange).toBe(true);
+});
