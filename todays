@@ -25,3 +25,10 @@ it('should Date range resert when resetDateRange() is called"', () => {
   expect(component.selectedStartDate).toBe('moment(component.selectedDates.startDate)');
   expect(component.selectedEndDate).toBe('moment(component.selectedDates.endDate)');
 });
+
+it('should FilterData be selected when getselectedFilterData() is called"', () => {
+  const filterResult = 'FilterResult';
+  component.getselectedFilterData();
+  expect(component.isFilterApplyDisable).toBe(false);
+  component.toggleFilterSelection(filterResult)
+});
