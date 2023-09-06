@@ -5,3 +5,16 @@ mockUBMService.this.GetAllDropdownLists.and.result (throwError(() =>errorMessage
 component.GetAccountsMappingList();
 expect (console.log).toHaveBeenCalledwith(errorMessage);
 });
+
+it('should populate AccountsMappingList when GetAccountsMappingList() is successful', () => {
+     
+    const roleId = 'test-role-id';
+    const accountsMappingList = mockAccountsMappingList;
+    
+    ubmService.getAccountMappingList.and.returnValue(of(mockAccountsMappingList));
+
+    componentOrService.getAccountsMapping(roleId);
+
+    expect(ubmService.getAccountMappingList).toHaveBeenCalledWith(roleId); 
+    expect(componentOrService.accountsMappingList).toEqual(mockAccountsMappingList);
+  });
