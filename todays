@@ -18,3 +18,35 @@ expect (console.log).toHaveBeenCalledwith(errorMessage);
     expect(mockUBMService.getAccountMappingList).toHaveBeenCalledWith(roleId); 
     expect(componentOrService.accountsMappingList).toEqual(tempAccountsMappingList);
   });
+
+it('should  Location Change when onLocationChange() is called', () => {
+  
+  window.sessionStorage[ 'roleId'] = 1;
+  const invoiceData = 
+  facilityList = mockFacilityList 
+  mockUBMService.getLocationList.and.returnValue (of (facilityList));
+
+  spyOn(component, 'resetDropdown');
+  spyOn(component, 'updateProviderList');
+  spyOn(component, 'updateBuildingList');
+  spyOn(component, 'updateAccountNumberList');
+
+  // Act
+  component.onLocationChange(invoiceData);
+
+  // Assert
+  expect(component.locationClicked).toBe(true);
+  expect(component.invoiceInformation.locationId).toBe(invoiceData.locationId);
+  expect(component.locationName).toBe(invoiceData.facilityName);
+  expect(component.searchTextLocation).toBe('');
+  expect(component.isLocationDropdownOpen).toBe(false);
+
+  expect(component.resetDropdown).toHaveBeenCalled();
+  expect(component.providerSelected).toBe(false);
+  expect(component.buildingSelected).toBe(false);
+  expect(component.accountSelected).toBe(false);
+
+  expect(component.updateProviderList).toHaveBeenCalled();
+  expect(component.updateBuildingList).toHaveBeenCalled();
+  expect(component.updateAccountNumberList).toHaveBeenCalled();
+});
