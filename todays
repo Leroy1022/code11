@@ -22,19 +22,17 @@ expect (console.log).toHaveBeenCalledwith(errorMessage);
 it('should  Location Change when onLocationChange() is called', () => {
   
   window.sessionStorage[ 'roleId'] = 1;
-  const invoiceData = 
-  facilityList = mockFacilityList 
-  mockUBMService.getLocationList.and.returnValue (of (facilityList));
+  const invoiceData 
+  facilityId = mockFacilityId;
+  mockUBMService.onLocationChange.and.returnValue (of (facilityList));
 
   spyOn(component, 'resetDropdown');
   spyOn(component, 'updateProviderList');
   spyOn(component, 'updateBuildingList');
   spyOn(component, 'updateAccountNumberList');
 
-  // Act
   component.onLocationChange(invoiceData);
 
-  // Assert
   expect(component.locationClicked).toBe(true);
   expect(component.invoiceInformation.locationId).toBe(invoiceData.locationId);
   expect(component.locationName).toBe(invoiceData.facilityName);
