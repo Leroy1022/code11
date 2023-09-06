@@ -6,15 +6,15 @@ component.GetAccountsMappingList();
 expect (console.log).toHaveBeenCalledwith(errorMessage);
 });
 
-it('should populate AccountsMappingList when GetAccountsMappingList() is successful', () => {
+ it('should populate AccountsMappingList when GetAccountsMappingList() is successful', () => {
      
     const roleId = 'test-role-id';
-    const accountsMappingList = mockAccountsMappingList;
+    const accountsMappingList = tempAccountsMappingList;
     
-    ubmService.getAccountMappingList.and.returnValue(of(mockAccountsMappingList));
+    mockUBMService.getAccountMappingList.and.returnValue(of(tempAccountsMappingList));
 
     componentOrService.getAccountsMapping(roleId);
 
-    expect(ubmService.getAccountMappingList).toHaveBeenCalledWith(roleId); 
-    expect(componentOrService.accountsMappingList).toEqual(mockAccountsMappingList);
+    expect(mockUBMService.getAccountMappingList).toHaveBeenCalledWith(roleId); 
+    expect(componentOrService.accountsMappingList).toEqual(tempAccountsMappingList);
   });
