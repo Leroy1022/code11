@@ -1,7 +1,7 @@
 
-it('should log an error when GetAccountsMappingList () fails', ()=>{
+it('should log an error when etAccountsMappingList () fails', ()=>{
 const errorMessage = "Error fetching the location list!!!"; 
-mockUBMService.GetAccountsMappingList.and.returnValue (throwError(() =>errorMessage)); spyon(console, 'log'); 
-component.accountsMappingList  ();
+mockUBMService.accountsMappingList.and.returnValue (throwError(() =>errorMessage)); spyon(console, 'log'); 
+component.GetAccountsMappingList();
 expect (console.log).toHaveBeenCalledwith(errorMessage);
 });
