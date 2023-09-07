@@ -75,3 +75,15 @@ it('should reset dropdown when resetDropdown()', () => {
  
     expect(component.billPeriod).toBe('September, 2023');
   });
+
+
+it('should set billEndDateSelected when calcBillEndDate is called', () => {
+ 
+    component.endDate = { value: moment.utc('2023-08-10') };
+ 
+    component.calcBillEndDate();
+ 
+    expect(component.billEndDateSelected).toBe(true);
+ 
+    expect(component.invoiceInformation.billEndDate).toBe('Aug 10, 2023' + JSON.stringify(moment.utc('2023-08-10')));
+  });
