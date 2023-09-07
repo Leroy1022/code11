@@ -198,3 +198,31 @@ it('should  Location Change when onLocationChange() is called', () => {
     expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen); 
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   });
+
+it('should  provider Change when onProviderChange() is called', () => {
+    const provider = {
+      providerId: '100',
+      providerName: 'Test Provider',
+    };
+
+    component.onProviderChange(provider);
+
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe('100');
+    expect(component.providerName).toBe('Test provider');
+    expect(component.searchTextProvider).toBe('');
+    expect(component.isProviderDropdownOpen).toBe(component.isBuildingDropdownOpen); 
+      });
+
+  it('should reset dropdown and set tempAccountsMappingList when onProviderChange() is empty', () => {
+    component.invoiceInformation.providerId = 'some value'; 
+
+    component.onProviderChange({ providerId: '' });  
+
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe('');
+    expect(component.providerName).toBe('');
+    expect(component.searchTextProvider).toBe('');
+    expect(component.isProviderDropdownOpen).toBe(component.isProviderDropdownOpen); 
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  });
