@@ -44,3 +44,10 @@ it('should toggle IsRowExpanded when toggleRowMenu is called', () => {
     ]);
     expect(component.checkedList).toEqual([2021]);
   });
+
+
+ it('should set showClearAll when clickedOutsideFilterIcon() is called', () => {
+    component.showClearAll = true;
+    component.clickedOutsideFilterIcon();
+    expect(component.showClearAll).toBe(false);
+  });
