@@ -82,3 +82,35 @@ it('should  Location Change when onBuildingChange() is called', () => {
     expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen);  
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   }));
+
+it('should  Location Change when onProviderChange() is called', () => {
+    const Provider;
+
+    component.onProviderChange(Provider);
+
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe('123');
+    expect(component.providerName).toBe('Test building');
+    expect(component.searchTextProvider).toBe('');
+     
+  });  
+
+  it('should reset dropdown and set tempAccountsMappingList when onBuildingChange() is Called', fakeAsync(() => {
+    component.invoiceInformation.providerId = 'some value';  
+
+    component.onProviderChange({ providerId: '' });  
+
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe('');
+    expect(component.providerName).toBe('');
+    expect(component.searchTextProvider).toBe('');
+ 
+    const req = httpMock.expectOne('/your-api-endpoint');  
+ 
+    req.flush({ data: 'response data' });
+ 
+    tick();
+
+    expect(component.isProviderDropdownOpen).toBe(component.isProviderDropdownOpen);  
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  }));
