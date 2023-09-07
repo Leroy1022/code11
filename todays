@@ -50,3 +50,35 @@ it('should  Location Change when onLocationChange() is called', () => {
     expect(component.isLocationDropdownOpen).toBe(component.isLocationDropdownOpen);  
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   }));
+
+it('should  Location Change when onBuildingChange() is called', () => {
+    const building;
+
+    component.onLocationChange(building);
+
+    expect(component.buildingclicked).toBe(true);
+    expect(component.invoiceInformation.buildingId).toBe('123');
+    expect(component.buildingName).toBe('Test building');
+    expect(component.searchTextBuilding).toBe('');
+     
+  });
+
+  it('should reset dropdown and set tempAccountsMappingList when onBuildingChange() is Called', fakeAsync(() => {
+    component.invoiceInformation.buildingId = 'some value';  
+
+    component.onLocationChange({ buildingId: '' });  
+
+    expect(component.buildingclicked).toBe(true);
+    expect(component.invoiceInformation.buildingId).toBe('');
+    expect(component.buildingName).toBe('');
+    expect(component.searchTextBuilding).toBe('');
+ 
+    const req = httpMock.expectOne('/your-api-endpoint');  
+ 
+    req.flush({ data: 'response data' });
+ 
+    tick();
+
+    expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen);  
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  }));
