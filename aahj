@@ -54,8 +54,8 @@ it('should reset dropdown when resetDropdown()', () => {
 
   it('should calculate bill period when calcBillPeriod() are true', () => {
  
-    component.startDate = { value: moment.utc('2023-08-01') };
-    component.endDate = { value: moment.utc('2023-08-10') };
+    component.startDate = { component.startDate.value: moment.utc('2023-08-01') };
+    component.endDate = { omponent.endDate.value: moment.utc('2023-08-10') };
     component.startDateSelected = true;
     component.billEndDateSelected = true;
  
@@ -66,8 +66,8 @@ it('should reset dropdown when resetDropdown()', () => {
 
   it('should calculate bill period when calcBillPeriod() are false', () => {
  
-    component.startDate = { value: moment.utc('2023-08-01') };
-    component.endDate = { value: moment.utc('2023-09-15') };
+    component.startDate = { component.startDate.value: moment.utc('2023-08-01') };
+    component.endDate = { component.endDate.value: moment.utc('2023-09-15') };
     component.startDateSelected = false;
     component.billEndDateSelected = false;
  
