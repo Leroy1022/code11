@@ -29,3 +29,18 @@ it('should toggle IsRowExpanded when toggleRowMenu is called', () => {
     component.toggleRowMenu(sampleData);
     expect(sampleData.IsRowExpanded).toBe(false);
   });
+
+ it('should update showDropDown and Year  when clickedOutside() is called', () => {
+    component.showDropDown = true;
+    component.retainInvoiceYearList = [
+      { Year: 2021, IsYearDisabled: false, IsChecked: true },
+      { Year: 2022, IsYearDisabled: true, IsChecked: false },
+    ];
+    component.clickedOutside();
+    expect(component.showDropDown).toBe(false);
+    expect(component.Year).toEqual([
+      { Year: 2021, IsYearDisabled: false, IsChecked: true },
+      { Year: 2022, IsYearDisabled: true, IsChecked: false },
+    ]);
+    expect(component.checkedList).toEqual([2021]);
+  });
