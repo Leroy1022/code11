@@ -172,7 +172,7 @@ it('should  Location Change when onLocationChange() is called', () => {
 
 
  it('should  Building Change when onBuildingChange() is called', () => {
-    const Building = {
+    const building = {
       buildingId: '102',
       buildingName: 'Test Building',
     };
