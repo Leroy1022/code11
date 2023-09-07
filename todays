@@ -54,7 +54,7 @@ it('should  Location Change when onLocationChange() is called', () => {
 it('should  Location Change when onBuildingChange() is called', () => {
     const building;
 
-    component.onLocationChange(building);
+    component.onBuildingChange(building);
 
     expect(component.buildingclicked).toBe(true);
     expect(component.invoiceInformation.buildingId).toBe('123');
@@ -66,7 +66,7 @@ it('should  Location Change when onBuildingChange() is called', () => {
   it('should reset dropdown and set tempAccountsMappingList when onBuildingChange() is Called', fakeAsync(() => {
     component.invoiceInformation.buildingId = 'some value';  
 
-    component.onLocationChange({ buildingId: '' });  
+    component.onBuildingChange({ buildingId: '' });  
 
     expect(component.buildingclicked).toBe(true);
     expect(component.invoiceInformation.buildingId).toBe('');
