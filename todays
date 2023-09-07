@@ -226,3 +226,18 @@ it('should  provider Change when onProviderChange() is called', () => {
     expect(component.isProviderDropdownOpen).toBe(component.isProviderDropdownOpen); 
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   });
+
+it('should CurrencySymbol be selected when getCurrencySymbolList()', () => {
+    component.getCurrencySymbolList();
+    tick();  
+    expect(component.currencySymbolList).toEqual([{ symbol: '$', name: 'US Dollar' }]);
+
+  });
+
+  it('should handle error when fetching getCurrencySymbolList()', fakeAsync(() => {
+    spyOn(ubmService, 'getCurrencySymbolList').and.returnValue(of({}).pipe(() => { throw new Error('Error occurred'); }));
+
+    component.getCurrencySymbolList();
+    tick();  
+    expect(console.log).toHaveBeenCalledWith('Error occurred');
+  }));
