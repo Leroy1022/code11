@@ -51,3 +51,18 @@ it('should toggle IsRowExpanded when toggleRowMenu is called', () => {
     component.clickedOutsideFilterIcon();
     expect(component.showClearAll).toBe(false);
   });
+
+it('should set isFilterApplyDisable to false and call toggleFilterSelection when getSelectedFilterData() is called', () => {
+    
+    component.isFilterApplyDisable = true;
+
+    const filterResult = { 1,2,3 };
+
+    spyOn(component, 'toggleFilterSelection');
+
+    component.getSelectedFilterData(filterResult);
+
+    expect(component.isFilterApplyDisable).toBe(false);
+
+    expect(component.toggleFilterSelection).toHaveBeenCalledWith(filterResult);
+  });
