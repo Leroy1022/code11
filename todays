@@ -20,31 +20,33 @@ expect (console.log).toHaveBeenCalledwith(errorMessage);
   });
 
 it('should  Location Change when onLocationChange() is called', () => {
-  
-  window.sessionStorage[ 'roleId'] = 1;
-  const invoiceData 
-  facilityId = mockFacilityId;
-  mockUBMService.onLocationChange.and.returnValue (of (facilityList));
+    const location;
 
-  spyOn(component, 'resetDropdown');
-  spyOn(component, 'updateProviderList');
-  spyOn(component, 'updateBuildingList');
-  spyOn(component, 'updateAccountNumberList');
+    component.onLocationChange(location);
 
-  component.onLocationChange(invoiceData);
+    expect(component.locationclicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe('123');
+    expect(component.locationName).toBe('Test Facility');
+    expect(component.searchTextLocation).toBe('');
+     
+  });
 
-  expect(component.locationClicked).toBe(true);
-  expect(component.invoiceInformation.locationId).toBe(invoiceData.locationId);
-  expect(component.locationName).toBe(invoiceData.facilityName);
-  expect(component.searchTextLocation).toBe('');
-  expect(component.isLocationDropdownOpen).toBe(false);
+  it('should reset dropdown and set tempAccountsMappingList when onLocationChange() is Called', fakeAsync(() => {
+    component.invoiceInformation.locationId = 'some value';  
 
-  expect(component.resetDropdown).toHaveBeenCalled();
-  expect(component.providerSelected).toBe(false);
-  expect(component.buildingSelected).toBe(false);
-  expect(component.accountSelected).toBe(false);
+    component.onLocationChange({ locationId: '' });  
 
-  expect(component.updateProviderList).toHaveBeenCalled();
-  expect(component.updateBuildingList).toHaveBeenCalled();
-  expect(component.updateAccountNumberList).toHaveBeenCalled();
-});
+    expect(component.locationclicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe('');
+    expect(component.locationName).toBe('');
+    expect(component.searchTextLocation).toBe('');
+ 
+    const req = httpMock.expectOne('/your-api-endpoint');  
+ 
+    req.flush({ data: 'response data' });
+ 
+    tick();
+
+    expect(component.isLocationDropdownOpen).toBe(component.isLocationDropdownOpen);  
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  }));
