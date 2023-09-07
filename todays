@@ -169,3 +169,32 @@ it('should  Location Change when onLocationChange() is called', () => {
     expect(component.isLocationDropdownOpen).toBe(component.isLocationDropdownOpen); 
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   });
+
+
+ it('should  Building Change when onBuildingChange() is called', () => {
+    const Building = {
+      buildingId: '102',
+      buildingName: 'Test Building',
+    };
+
+    component.onBuildingChange(building);
+
+    expect(component.buildingclicked).toBe(true);
+    expect(component.invoiceInformation.buildingId).toBe('102');
+    expect(component.buildingName).toBe('Test Building');
+    expect(component.searchTextBuilding).toBe('');
+    expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen); 
+      });
+
+  it('should reset dropdown and set tempAccountsMappingList when onBuildingChange() is empty', () => {
+    component.invoiceInformation.buildingId = 'some value'; 
+
+    component.onBuildingChange({ buildingId: '' });  
+
+    expect(component.buildingclicked).toBe(true);
+    expect(component.invoiceInformation.buildingId).toBe('');
+    expect(component.buildingName).toBe('');
+    expect(component.searchTextbuilding).toBe('');
+    expect(component.isBuildingDropdownOpen).toBe(component.isBuildingDropdownOpen); 
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  });
