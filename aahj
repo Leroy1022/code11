@@ -1,0 +1,52 @@
+it('should reset dropdown when resetDropdown()', () => {
+    component.locationclicked = true;
+    component.buildingclicked = true;
+    component.providerClicked = true;
+    component.accountNumberClicked = true;
+    component.premiseIdClicked = true;
+    component.invoiceInformation.locationId = '123';
+    component.invoiceInformation.buildingId = '456';
+    component.invoiceInformation.providerId = 789;
+    component.invoiceInformation.accountNumber = '0001';
+    component.locationName = 'Location';
+    component.buildingName = 'Building';
+    component.providerName = 'Provider';
+    component.accountName = 'Account';
+    component.premisesName = 'Premises';
+    component.utilityType = 'Utility';
+    component.accountGroupNumber = '1001';
+    component.premiseNumberList = ['P1', 'P2'];
+    component.searchTextLocation = 'Search Location';
+    component.searchTextBuilding = 'Search Building';
+    component.searchTextProvider = 'Search Provider';
+    component.searchTextAccountNumber = 'Search Account';
+    component.searchTextPremisesId = 'Search Premises';
+
+     
+    component.resetDropdown();
+ 
+    expect(component.locationclicked).toBe(false);
+    expect(component.buildingclicked).toBe(false);
+    expect(component.providerClicked).toBe(false);
+    expect(component.accountNumberClicked).toBe(false);
+    expect(component.premiseIdClicked).toBe(false);
+    expect(component.invoiceInformation.locationId).toBe('');
+    expect(component.invoiceInformation.buildingId).toBe('');
+    expect(component.invoiceInformation.providerId).toBe(0);
+    expect(component.invoiceInformation.accountNumber).toBe('');
+    expect(component.locationName).toBe('');
+    expect(component.buildingName).toBe('');
+    expect(component.providerName).toBe('');
+    expect(component.accountName).toBe('');
+    expect(component.premisesName).toBe('');
+    expect(component.utilityType).toBe('');
+    expect(component.accountGroupNumber).toBe('');
+    expect(component.premiseNumberList).toEqual([]);
+    expect(component.searchTextLocation).toBe('');
+    expect(component.searchTextBuilding).toBe('');
+    expect(component.searchTextProvider).toBe('');
+    expect(component.searchTextAccountNumber).toBe('');
+    expect(component.searchTextPremisesId).toBe('');
+
+    
+  });
