@@ -140,3 +140,32 @@ it('should set premise properties  when premiseNumber() is empty', () => {
     expect(component.invoiceInformation.premiseNumber).toBe('');
     expect(component.premisesName).toBe('');
   });
+
+
+it('should  Location Change when onLocationChange() is called', () => {
+    const location = {
+      locationId: '123',
+      facilityName: 'Test Facility',
+    };
+
+    component.onLocationChange(location);
+
+    expect(component.locationclicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe('123');
+    expect(component.locationName).toBe('Test Facility');
+    expect(component.searchTextLocation).toBe('');
+    expect(component.isLocationDropdownOpen).toBe(component.isLocationDropdownOpen); 
+      });
+
+  it('should reset dropdown and set tempAccountsMappingList when onLocationChange() is empty', () => {
+    component.invoiceInformation.locationId = 'some value'; 
+
+    component.onLocationChange({ locationId: '' });  
+
+    expect(component.locationclicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe('');
+    expect(component.locationName).toBe('');
+    expect(component.searchTextLocation).toBe('');
+    expect(component.isLocationDropdownOpen).toBe(component.isLocationDropdownOpen); 
+    expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
+  });
