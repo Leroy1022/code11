@@ -21,3 +21,11 @@
     component.toggleMenu();
     expect(component.buttonsDisabled).toBe(false);
   });
+
+it('should toggle IsRowExpanded when toggleRowMenu is called', () => {
+    const sampleData: InvoiceDetailsForGrid = { IsRowExpanded: false };
+    component.toggleRowMenu(sampleData);
+    expect(sampleData.IsRowExpanded).toBe(true);
+    component.toggleRowMenu(sampleData);
+    expect(sampleData.IsRowExpanded).toBe(false);
+  });
