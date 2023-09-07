@@ -87,3 +87,14 @@ it('should set billEndDateSelected when calcBillEndDate is called', () => {
  
     expect(component.invoiceInformation.billEndDate).toBe('Aug 10, 2023' + JSON.stringify(moment.utc('2023-08-10')));
   });
+
+  it('should set calcBillStartDate selected when calcBillStartDate() is called', () => {
+ 
+    component.startDate = { startDate: moment.utc('2023-07-10') };
+ 
+    component.calcBillStartDate();
+ 
+    expect(component.billStartDateSelected).toBe(true);
+ 
+    expect(component.invoiceInformation.billStartDate).toBe('Aug 7, 2023' + JSON.stringify(moment.utc('2023-07-10')));
+  });
