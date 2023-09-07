@@ -66,3 +66,18 @@ it('should set isFilterApplyDisable to false and call toggleFilterSelection when
 
     expect(component.toggleFilterSelection).toHaveBeenCalledWith(filterResult);
   });
+
+it('should set isFilterApplyDisable to false and showDateRange when getSelectedUpdatedDateTime() is called', () => {
+    component.isFilterApplyDisable = true;
+    component.selectedDateRange = "calenderCustomRange";
+    component.retainSelectedRadioState = "calender CustomRange";
+    component.getSelectedUpdatedDateTime();
+    expect(component.isFilterApplyDisable).toBe(false);
+    expect(component.showDateRange).toBe(true);
+    component.showDateRange = false;
+    component.selectedDateRange = "anotherValue";
+    component.retainSelectedRadioState = "anotherValue";
+    component.getSelectedUpdatedDateTime();
+    expect(component.isFilterApplyDisable).toBe(false);
+    expect(component.showDateRange).toBe(false);
+  });
