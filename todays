@@ -241,3 +241,24 @@ it('should CurrencySymbol be selected when getCurrencySymbolList()', () => {
     tick();  
     expect(console.log).toHaveBeenCalledWith('Error occurred');
   }));
+
+it('should set currencyData when getCurrencySymbol() is called ', () => {
+   
+    component.facilityList = [
+      { Id: '1', ReportingCurrency: 'USD' },
+      { Id: '2', ReportingCurrency: 'EUR' },
+    ];
+ 
+    component.invoiceInformation = {
+      locationId: '1',  
+  };
+     component.currencySymbolList = [
+      { Code: 'USD', Name: 'US Dollar' },
+      { Code: 'EUR', Name: 'Euro' },
+    ];
+     spyOn(component, 'getCurrencySymbol');
+     component.getCurrencyData();
+     expect(component.selectedLocationValue).toEqual({ Id: '1', ReportingCurrency: 'USD' });
+    expect(component.currencyData).toEqual({ Code: 'USD', Name: 'US Dollar' });
+     expect(component.getCurrencySymbol).toHaveBeenCalled();
+  });
