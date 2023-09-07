@@ -114,3 +114,29 @@ it('should  Location Change when onProviderChange() is called', () => {
     expect(component.isProviderDropdownOpen).toBe(component.isProviderDropdownOpen);  
     expect(component.tempAccountsMappingList).toEqual(component.accountsMappingList);
   }));
+
+
+
+
+it('should set premise properties  when premiseNumber() is empty', () => {
+    component.tempAccountsMappingList = [];
+    component.premiseNumber();
+    expect(component.invoiceInformation.premiseNumber).toBe(InvoiceInfoConstants.NONE);
+    expect(component.premisesName).toBe(InvoiceInfoConstants.NONE);
+  });
+
+  it('should set premise properties  when premiseNumber() has one item', () => {
+    component.tempAccountsMappingList = component.accountsMappingList;
+    component.premiseNumber();
+    expect(component.premiseIdclicked).toBe(true);
+    expect(component.invoiceInformation.premiseNumber).toBe('premiseNumber');
+    expect(component.premisesName).toBe('premisesName');
+  });
+
+  it('should reset premise properties when premiseNumber() has multiple items', () => {
+    component.tempAccountsMappingList =  component.accountsMappingList;
+    component.premiseNumber();
+    expect(component.premiseIdclicked).toBe(false);
+    expect(component.invoiceInformation.premiseNumber).toBe('');
+    expect(component.premisesName).toBe('');
+  });
