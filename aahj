@@ -93,3 +93,31 @@ it('should handle an empty string when removeNumberComma() is caled', () => {
     const result = component.removeNumberComma(objName);
     expect(result).toBe(objName);
   });
+
+
+
+
+it('should bind grid data when bindGridData() is called ', () => {
+    const sampleData = [1,2];
+    component.result = sampleData;
+
+    component.pageSize = 10;
+
+    component.bindGridData();
+
+    expect(component.totalItem).toBe(sampleData.length);
+
+    expect(component.result).toEqual(sampleData.slice(0, component.pageSize));
+
+    expect(component.pageContent.emit).toHaveBeenCalledWith(component.result);
+
+    expect(component.endRowNum).toBe(
+      sampleData.length > 0 ? Math.min(component.totalItem + 1, component.pageSize) : undefined
+    );
+ 
+    expect(component.totalItems).toBe(
+      sampleData.length > 0 ? Math.ceil(component.totalItem / component.pageSize) : 1
+    );
+  
+    expect(component.isLoading).toBe(false);
+  });
