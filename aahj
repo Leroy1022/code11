@@ -157,3 +157,41 @@ it('should sort the array in ascending order when sortByInteger() is called ', (
       { name: '1' },
     ]);
   });
+it('should sort the array by date in ascending order when sortByDate() is called ', () => {
+   
+    const sortArray = [
+      { date: '2023-09-01' },
+      { date: '2023-08-15' },
+      { date: '2023-09-10' },
+    ];
+
+    component.orderType = 'asc';
+
+ 
+    const result = component.sortByDate(sortArray, { name: 'date' });
+
+    expect(result).toEqual([
+      { date: '2023-08-15' },
+      { date: '2023-09-01' },
+      { date: '2023-09-10' },
+    ]);
+  });
+
+  it('should sort the array by date in descending order when sortByDate() is called', () => {
+  
+    const sortArray = [
+      { date: '2023-09-01' },
+      { date: '2023-08-15' },
+      { date: '2023-09-10' },
+    ];
+
+    component.orderType = 'desc';
+
+    const result = component.sortByDate(sortArray, { name: 'date' });
+
+    expect(result).toEqual([
+      { date: '2023-09-10' },
+      { date: '2023-09-01' },
+      { date: '2023-08-15' },
+    ]);
+  });
