@@ -195,3 +195,22 @@ it('should sort the array by date in ascending order when sortByDate() is called
       { date: '2023-08-15' },
     ]);
   });
+
+
+ it('should fetch year list and perform necessary operations when getYearList() is called', fakeAsync(() => {
+    
+    const yearList = [2021, 2022, 2023];
+
+    window.sessionStorage['UserRoleID'] = 'someRoleID';
+
+    invoiceYearService.getInvoiceYears.and.returnValue(of(yearList));
+
+    component.getYearList();
+
+    expect(component.YearList).toEqual(yearList);
+
+
+    window.sessionStorage['UserRoleID'] = null;
+    component.getYearList();
+    expect(invoiceYearService.getInvoiceYears).not.toHaveBeenCalled();
+  }));
