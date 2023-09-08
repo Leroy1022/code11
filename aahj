@@ -121,3 +121,39 @@ it('should bind grid data when bindGridData() is called ', () => {
   
     expect(component.isLoading).toBe(false);
   });
+
+
+it('should sort the array in ascending order when sortByInteger() is called ', () => {
+    const sortArray = [
+      { name: '3' },
+      { name: '1' },
+      { name: '2' },
+      { name: '5' },
+    ];
+    component.orderType = 'asc';
+    const result = component.sortByInteger(sortArray, { name: 'name' });
+    expect(result).toEqual([
+      { name: '1' },
+      { name: '2' },
+      { name: '3' },
+      { name: '5' },
+    ]);
+  });
+
+  it('should sort the array in descending order when sortByInteger() is called', () => {
+    const sortArray = [
+      { name: '3' },
+      { name: '1' },
+      { name: '2' },
+      { name: '5' },
+    ];
+
+    component.orderType = 'desc';
+    const result = component.sortByInteger(sortArray, { name: 'name' });
+    expect(result).toEqual([
+      { name: '5' },
+      { name: '3' },
+      { name: '2' },
+      { name: '1' },
+    ]);
+  });
