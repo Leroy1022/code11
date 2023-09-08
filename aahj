@@ -214,3 +214,44 @@ it('should sort the array by date in ascending order when sortByDate() is called
     component.getYearList();
     expect(invoiceYearService.getInvoiceYears).not.toHaveBeenCalled();
   }));
+
+
+
+ it('should sort the array alphabetically and numerically in ascending order when sortByAlphalium() is called', () => {
+    const sortArray = [
+      { name: 'Item 3' },
+      { name: 'Item 1' },
+      { name: 'Item 10' },
+      { name: 'Item 2' },
+      { name: 'Item 20' },
+    ];
+    component.orderType = 'asc';
+    const result = component.sortByAlphalium(sortArray, { name: 'name' });
+    expect(result).toEqual([
+      { name: 'Item 1' },
+      { name: 'Item 2' },
+      { name: 'Item 3' },
+      { name: 'Item 10' },
+      { name: 'Item 20' },
+    ]);
+  });
+
+  it('should sort the array alphabetically and numerically in descending order when sortByAlphalium() is called', () => {
+    const sortArray = [
+      { name: 'Item 3' },
+      { name: 'Item 1' },
+      { name: 'Item 10' },
+      { name: 'Item 2' },
+      { name: 'Item 20' },
+    ];
+    component.orderType = 'desc';
+    const result = component.sortByAlphalium(sortArray, { name: 'name' });
+
+    expect(result).toEqual([
+      { name: 'Item 20' },
+      { name: 'Item 10' },
+      { name: 'Item 3' },
+      { name: 'Item 2' },
+      { name: 'Item 1' },
+    ]);
+  });
