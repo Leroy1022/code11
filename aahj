@@ -81,3 +81,15 @@ it('should set isFilterApplyDisable to false and showDateRange when getSelectedU
     expect(component.isFilterApplyDisable).toBe(false);
     expect(component.showDateRange).toBe(false);
   });
+
+it('should handle an empty string when removeNumberComma() is caled', () => {
+    const objName = '';
+    const result = component.removeNumberComma(objName);
+    expect(result).toBe('');
+  });
+
+  it('should handle a string with no non-numeric characters when removeNumberComma() is caled', () => {
+    const objName = '123456';
+    const result = component.removeNumberComma(objName);
+    expect(result).toBe(objName);
+  });
