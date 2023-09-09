@@ -309,3 +309,33 @@ it('should update showDateRange when selectedDateRange and retainSelectedRadioSt
 
     expect(component.showDateRange).toBe(false);
   });
+
+
+it('should apply a filter when isDeleteFilter or selectAllFilter is false when applyGridfilter() is called', () => {
+
+    const invoice = { name: 'SampleColumn' };
+ 
+    component.isDeleteFilter = false;
+    component.selectAllFilter = false;
+
+
+    component.applyGridfilter(invoice);
+
+    expect(component.retainFilterArray.length).toBe(1); 
+
+  });
+
+  it('should remove a filter when isDeleteFilter or selectAllFilter is true when applyGridfilter() is called', () => {
+
+    const invoice = { name: 'SampleColumn' };
+
+    component.isDeleteFilter = true;
+    component.selectAllFilter = true;
+
+    component.retainFilterArray = [{ name: 'SampleColumn' }];
+
+    component.applyGridfilter(invoice);
+
+    expect(component.retainFilterArray.length).toBe(0);
+
+  });
