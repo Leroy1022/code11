@@ -437,3 +437,30 @@ it('should update date-related properties and showDateRange when startDate and e
     expect(component.selectedStartDate).toBeUndefined();
     expect(component.selectedEndDate).toBeUndefined();
   });
+
+
+it('should reset properties when ngOnDestroy is called', () => {
+ 
+    component.invoiceHeader = [
+      { clickFlag: true, IsFilter: true, IsAscending: true, IsDescending: true },
+      { clickFlag: false, IsFilter: false, IsAscending: false, IsDescending: false },
+    ];
+
+    const invoiceData = [
+      { IsRowChecked: true },
+      { IsRowChecked: false },
+    ];
+ 
+    component.ngOnDestroy();
+ 
+    component.invoiceHeader.forEach((v) => {
+      expect(v.clickFlag).toBe(false);
+      expect(v.IsFilter).toBe(false);
+      expect(v.IsAscending).toBe(false);
+      expect(v.IsDescending).toBe(false);
+    });
+
+    invoiceData.forEach((v) => {
+      expect(v.IsRowChecked).toBe(false);
+    });
+  });
