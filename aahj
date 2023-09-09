@@ -464,3 +464,130 @@ it('should reset properties when ngOnDestroy is called', () => {
       expect(v.IsRowChecked).toBe(false);
     });
   });
+
+
+
+it('should reset date-related properties and flags when resetDateRange() is called', () => {
+    // Set up some sample data and initial property values
+    component.showDateRange = true;
+    component.isFilterApplyDisable = true;
+    component.selectedDateRange = 'customRange';
+    component.selectedDates = {
+      startDate: moment('2023-01-01'),
+      endDate: moment('2023-01-10'),
+    };
+
+    component.resetDateRange();
+
+    expect(component.showDateRange).toBe(false);
+    expect(component.isFilterApplyDisable).toBe(false);
+    expect(component.selectedDateRange).toBe('selectAll');
+    expect(component.selectedDates.startDate.toISOString()).toBe(moment().toISOString()); // Adjust as needed
+    expect(component.selectedDates.endDate.toISOString()).toBe(moment().toISOString()); // Adjust as needed
+  });
+
+it('should sort child grid data ascendingly when sortChildBy() is called', () => {
+
+    const childHeader = {
+      name: 'SampleColumn',
+      dataType: 'int',
+      IsAscending: true,
+      IsDescending: false,
+    };
+
+    component.childResult = [
+      { SampleColumn: 3 },
+      { SampleColumn: 1 },
+      { SampleColumn: 2 },
+    ];
+
+    
+    component.sortChildBy(childHeader);
+
+    expect(component.childResult[0].SampleColumn).toBe(1);
+    expect(component.childResult[1].SampleColumn).toBe(2);
+    expect(component.childResult[2].SampleColumn).toBe(3);
+  });
+
+  it('should sort child grid data descendingly when sortChildBy() is called', () => {
+
+    const childHeader = {
+      name: 'SampleColumn',
+      dataType: 'int',
+      IsAscending: false,
+      IsDescending: true,
+    };
+
+    component.childResult = [
+      { SampleColumn: 3 },
+      { SampleColumn: 1 },
+      { SampleColumn: 2 },
+    ];
+
+    component.sortChildBy(childHeader);
+
+    expect(component.childResult[0].SampleColumn).toBe(3);
+    expect(component.childResult[1].SampleColumn).toBe(2);
+    expect(component.childResult[2].SampleColumn).toBe(1);
+  });
+it('should sort child grid data in ascending order based on columnName when SortChildDataAscBy() is called', () => {
+ 
+    const columnName = 'SampleColumn';
+
+    component.sortorder = 1; 
+    component.sortProperty = null; 
+
+    component.childResult = [
+      { SampleColumn: 3 },
+      { SampleColumn: 1 },
+      { SampleColumn: 2 },
+    ];
+
+    component.SortChildDataAscBy(columnName);
+
+    expect(component.childResult[0].SampleColumn).toBe(1);
+    expect(component.childResult[1].SampleColumn).toBe(2);
+    expect(component.childResult[2].SampleColumn).toBe(3);
+  });
+
+   it('should add value to checkedList when status is true when getSelectedValue() is called', () => {
+  
+    component.checkedList = ['Value1', 'Value2'];
+
+    component.getSelectedValue(true, 'NewValue');
+
+    expect(component.checkedList).toEqual(['Value1', 'Value2', 'NewValue']);
+  });
+
+  it('should remove value from checkedList when status is false when getSelectedValue() is called', () => {
+
+    component.checkedList = ['Value1', 'Value2', 'Value3'];
+
+    component.getSelectedValue(false, 'Value2');
+
+    expect(component.checkedList).toEqual(['Value1', 'Value3']);
+  });
+
+it('should sort data in ascending order based on a specific column when sortBy() is called ', () => {
+
+    const sortingOrder = 'asc';
+    const columnName = 'LocationName';
+    const expectedSortedData = [...]; 
+
+    component.sortBy(columnName, sortingOrder);
+
+    expect(component.actualInvoiceData).toEqual(expectedSortedData);
+
+  });
+
+  it('should sort data in descending order based on a specific column when sortBy() is called ', () => {
+
+    const sortingOrder = 'desc';
+    const columnName = 'LocationName';
+    const expectedSortedData = [...]; // Provide expected sorted data
+
+    component.sortBy(columnName, sortingOrder);
+
+    expect(component.actualInvoiceData).toEqual(expectedSortedData);
+
+  });
