@@ -341,7 +341,7 @@ it('should apply a filter when isDeleteFilter or selectAllFilter is false when a
   });
 
 
- it('should reset filters and update gridApplyFilterResult and totalItem when retainFilterArray is empty', () => {
+ it('should reset filters and update gridApplyFilterResult and totalItem when retainFilterArray is empty when applyResetFilter() is called', () => {
 
     component.retainFilterArray = [];
 
@@ -354,7 +354,7 @@ it('should apply a filter when isDeleteFilter or selectAllFilter is false when a
     expect(component.totalItem).toBe(component.actualInvoiceData.length);
   });
 
-  it('should apply filters and update gridApplyFilterResult and totalItem when retainFilterArray is not empty', () => {
+  it('should apply filters and update gridApplyFilterResult and totalItem when retainFilterArray is not empty when applyResetFilter() is called', () => {
   
     component.retainFilterArray = [
       { name: 'UpdatedDateAndTime', filterlist: [{ name: 'SampleFilter', IsChecked: true }], isFirstFilter: true },
@@ -368,4 +368,41 @@ it('should apply a filter when isDeleteFilter or selectAllFilter is false when a
     expect(component.retainFilterArray.length).toBe(0);
     expect(component.gridApplyFilterResult.length).toBeGreaterThan(0); // Check if gridApplyFilterResult is updated
     expect(component.totalItem).toBe(component.gridApplyFilterResult.length);
+  });
+
+
+it('should remove a filter from retainFilterArray and update isCurrentFilter when retainFilterArray() is called', () => {
+
+    const columnName = 'SampleColumn';
+
+    component.retainFilterArray = [
+      { name: 'SampleColumn1', isCurrentFilter: true },
+      { name: 'SampleColumn2', isCurrentFilter: false },
+      { name: 'SampleColumn3', isCurrentFilter: false },
+    ];
+
+
+    component.removeFromRetainFilter(columnName);
+
+    expect(component.retainFilterArray.length).toBe(2);
+    expect(component.retainFilterArray.some((filter: any) => filter.name === columnName)).toBe(false);
+
+    expect(component.retainFilterArray.every((filter: any) => !filter.isCurrentFilter)).toBe(true);
+  });
+
+  it('should do nothing if the filter is not found in when retainFilterArray() is called', () => {
+ 
+    const columnName = 'NonExistentColumn';
+
+    component.retainFilterArray = [
+      { name: 'SampleColumn1', isCurrentFilter: true },
+      { name: 'SampleColumn2', isCurrentFilter: false },
+      { name: 'SampleColumn3', isCurrentFilter: false },
+    ];
+
+    component.removeFromRetainFilter(columnName);
+
+    expect(component.retainFilterArray.length).toBe(3);
+
+    expect(component.retainFilterArray.every((filter: any) => !filter.isCurrentFilter)).toBe(true);
   });
