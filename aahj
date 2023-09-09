@@ -255,3 +255,15 @@ it('should sort the array by date in ascending order when sortByDate() is called
       { name: 'Item 1' },
     ]);
   });
+
+
+ it('should filter data for the last 7 days when selectedDateRange()', () => {
+    const GridApplyResult = [
+      { UpdatedDateAndTime: moment().subtract(5, 'd').toDate() },
+      { UpdatedDateAndTime: moment().subtract(8, 'd').toDate() },
+      { UpdatedDateAndTime: moment().subtract(2, 'd').toDate() },
+    ];
+    component.selectedDateRange = 'last7';
+    component.calculatePastDaysData(GridApplyResult);
+    expect(component.filteredResult.length).toBe(2); 
+  });
