@@ -634,3 +634,10 @@ it('should set selectAllRows to true and indeterminate to false when all rows ar
     expect(component.selectAllRows).toBe(false);
     expect(component.indeterminate).toBe(true);
   });
+
+it('should set addInvoiceClicked to true when addInvoice() is called', () => {
+   
+    component.addInvoice();
+
+    expect(component.addInvoiceClicked).toBe(true);
+  });
