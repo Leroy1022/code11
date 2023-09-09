@@ -339,3 +339,33 @@ it('should apply a filter when isDeleteFilter or selectAllFilter is false when a
     expect(component.retainFilterArray.length).toBe(0);
 
   });
+
+
+ it('should reset filters and update gridApplyFilterResult and totalItem when retainFilterArray is empty', () => {
+
+    component.retainFilterArray = [];
+
+    component.actualInvoiceData = [{}, {}]; 
+
+    component.applyResetFilter();
+
+    expect(component.retainFilterArray.length).toBe(0);
+    expect(component.gridApplyFilterResult).toEqual(component.actualInvoiceData);
+    expect(component.totalItem).toBe(component.actualInvoiceData.length);
+  });
+
+  it('should apply filters and update gridApplyFilterResult and totalItem when retainFilterArray is not empty', () => {
+  
+    component.retainFilterArray = [
+      { name: 'UpdatedDateAndTime', filterlist: [{ name: 'SampleFilter', IsChecked: true }], isFirstFilter: true },
+    ];
+
+    component.actualInvoiceData = [{}, {}];
+    component.filteredResult = component.actualInvoiceData.slice();
+
+    component.applyResetFilter();
+
+    expect(component.retainFilterArray.length).toBe(0);
+    expect(component.gridApplyFilterResult.length).toBeGreaterThan(0); // Check if gridApplyFilterResult is updated
+    expect(component.totalItem).toBe(component.gridApplyFilterResult.length);
+  });
