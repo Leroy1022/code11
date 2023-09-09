@@ -291,3 +291,21 @@ it('should reset the Year array when resetInvoiceYear() is called', () => {
     expect(component.checkedList).toEqual([2021, 2022, 2023]);
   });
 
+it('should update showDateRange when selectedDateRange and retainSelectedRadioState match when getSelectedUpdatedDateTime() is called', () => {
+ 
+    component.selectedDateRange = 'calenderCustomRange';
+    component.retainSelectedRadioState = 'calender CustomRange';
+
+    component.getSelectedUpdatedDateTime();
+
+    expect(component.showDateRange).toBe(true);
+  });
+
+  it('should not update showDateRange when selectedDateRange and retainSelectedRadioState do not matchwhen getSelectedUpdatedDateTime() is called', () => {
+    component.selectedDateRange = 'calenderCustomRange';
+    component.retainSelectedRadioState = 'differentValue';
+
+    component.getSelectedUpdatedDateTime();
+
+    expect(component.showDateRange).toBe(false);
+  });
