@@ -406,3 +406,34 @@ it('should remove a filter from retainFilterArray and update isCurrentFilter whe
 
     expect(component.retainFilterArray.every((filter: any) => !filter.isCurrentFilter)).toBe(true);
   });
+
+it('should update date-related properties and showDateRange when startDate and endDate when datesUpdated() is called', () => {
+ 
+    const event = {
+      startDate: moment('2023-01-01'),
+      endDate: moment('2023-01-10'),
+    };
+ 
+    component.datesUpdated(event);
+ 
+    expect(component.showDateRange).toBe(true);
+
+ 
+    expect(component.selectedStartDate).toBe('01-01-2023');  
+    expect(component.selectedEndDate).toBe('01-10-2023');  
+  });
+
+  it('should not update date-related properties and showDateRange when startDate or endDate is null when datesUpdated() is called', () => {
+ 
+    const event = {
+      startDate: null,
+      endDate: moment('2023-01-10'),
+    };
+
+    component.datesUpdated(event);
+ 
+    expect(component.showDateRange).toBe(false);
+ 
+    expect(component.selectedStartDate).toBeUndefined();
+    expect(component.selectedEndDate).toBeUndefined();
+  });
