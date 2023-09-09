@@ -591,3 +591,46 @@ it('should sort data in ascending order based on a specific column when sortBy()
     expect(component.actualInvoiceData).toEqual(expectedSortedData);
 
   });
+
+
+
+
+
+
+it('should set actionsClicked to false when clickedOutsideActions() is called', () => {
+  
+    component.actionsClicked = true;
+    component.clickedOutsideActions();
+   expect(component.actionsClicked).toBe(false);
+  });
+
+it('should set selectAllRows to true and indeterminate to false when all rows are checked when updateSelectedAllState() is called', () => {
+
+    component.result.forEach((item) => (item.IsRowChecked = true));
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(true);
+    expect(component.indeterminate).toBe(false);
+  });
+
+  it('should set selectAllRows to false and indeterminate to false when all rows are unchecked when updateSelectedAllState() is called', () => {
+
+    component.result.forEach((item) => (item.IsRowChecked = false));
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(false);
+    expect(component.indeterminate).toBe(false);
+  });
+
+  it('should set selectAllRows to false and indeterminate to true when some rows are checked and some are unchecked when updateSelectedAllState() is called', () => {
+
+    component.result[0].IsRowChecked = true;
+    component.result[1].IsRowChecked = false;
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(false);
+    expect(component.indeterminate).toBe(true);
+  });
