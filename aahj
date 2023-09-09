@@ -267,3 +267,27 @@ it('should sort the array by date in ascending order when sortByDate() is called
     component.calculatePastDaysData(GridApplyResult);
     expect(component.filteredResult.length).toBe(2); 
   });
+
+it('should reset the Year array when resetInvoiceYear() is called', () => {
+    const Year = [
+      { Year: 2021, IsChecked: false, IsYearDisabled: false },
+      { Year: 2022, IsChecked: false, IsYearDisabled: false },
+      { Year: 2023, IsChecked: false, IsYearDisabled: false },
+      { Year: 2024, IsChecked: false, IsYearDisabled: false },
+    ];
+    component.Year = Year;
+
+    component.resetInvoiceYear();
+
+    expect(component.Year[0].IsChecked).toBe(true);
+    expect(component.Year[1].IsChecked).toBe(true);
+    expect(component.Year[2].IsChecked).toBe(true);
+    expect(component.Year[3].IsChecked).toBe(false);
+
+    expect(component.Year[0].IsYearDisabled).toBe(false);
+    expect(component.Year[1].IsYearDisabled).toBe(false);
+    expect(component.Year[2].IsYearDisabled).toBe(false);
+    expect(component.Year[3].IsYearDisabled).toBe(true);
+    expect(component.checkedList).toEqual([2021, 2022, 2023]);
+  });
+
