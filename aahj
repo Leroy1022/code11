@@ -641,3 +641,6 @@ it('should set addInvoiceClicked to true when addInvoice() is called', () => {
 
     expect(component.addInvoiceClicked).toBe(true);
   });
+
+console.log(Array.isArray(this.provider[providerId]));
+console.log(Array.isArray(this.provider[providerName]));
