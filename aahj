@@ -779,3 +779,4 @@ expect(component.isPremisesNumberDropdownOpen).toBe(true);
     component.getCommodityByAccNo();
     expect(component.utilityset).toEqual(new Set(['Commodity1', 'Commodity3']));
   });
+  expect(new Set(component.utilityset)).toEqual(new Set(['Commodity1', 'Commodity3']));
