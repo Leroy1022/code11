@@ -673,3 +673,68 @@ it('should set properties correctly when onProviderChange is called', () => {
     expect(component.isProviderDropdownOpen).toBe(false); 
    
   });
+
+
+
+it('should set properties correctly when onBuildingChange is called', () => {
+const mockBuilding = {
+buildingId: 100,
+buildingName: 'Test Building',
+};
+component.buildingClicked = false;
+component.invoiceInformation.buildingId = 0;
+component.buildingName = '';
+component.searchTextBuilding ='';
+component.isBuildingDropdownOpen = false; 
+component.buildingSelected = false;
+component.tempAccountsMappingList=component.accountsMappingList; 
+component.onBuildingChange (mockBuilding); 
+expect(component.buildingclicked).toBe (true);
+expect (component.invoiceInformation.buildingId).toBe(100);
+expect (component.buildingName).toBe('Test Building'); expect (component.searchTextBuilding).toBe('');
+expect(component.isBuildingDropdownOpen).toBe(true);
+
+});
+
+
+it('should set properties correctly when onLocationChange is called', () => {
+const mockLocation = {
+locationId: 100,
+locationName: 'Test location',
+};
+component.locationClicked = false;
+component.invoiceInformation.locationId = 0;
+component.locationName = '';
+component.searchTextLocation ='';
+component.isLocationDropdownOpen = false; 
+component.locationSelected = false;
+component.tempAccountsMappingList=component.accountsMappingList; 
+component.onLocationChange (mockLocation); 
+expect(component.locationclicked).toBe (true);
+expect (component.invoiceInformation.locationId).toBe(100);
+expect (component.locationName).toBe('Test Location');
+ expect (component.searchTextLocation).toBe('');
+expect(component.isLocationDropdownOpen).toBe(true);
+
+});
+
+it('should set properties correctly when onPremisesNumberChange()  is called', () => {
+const mockpremisesNumber = {
+premisesNumberId: 100,
+premisesNumberName: 'Test PremisesNumber',
+};
+component.premisesNumberClicked = false;
+component.invoiceInformation.premisesNumberId = 0;
+component.premisesNumberName = '';
+component.searchTextPremisesNumber ='';
+component.isPremisesNumberDropdownOpen = false; 
+component.premisesNumberSelected = false;
+component.tempAccountsMappingList=component.accountsMappingList; 
+component.onPremisesNumberChange(mockPremisesNumber); 
+expect(component.premisesNumberclicked).toBe (true);
+expect (component.invoiceInformation.premisesNumberId).toBe(100);
+expect (component.premisesNumberName).toBe('Test PremisesNumber');
+ expect (component.searchTextPremisesNumber).toBe('');
+expect(component.isPremisesNumberDropdownOpen).toBe(true);
+
+});
