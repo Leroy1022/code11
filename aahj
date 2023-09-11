@@ -738,3 +738,32 @@ expect (component.premisesNumberName).toBe('Test PremisesNumber');
 expect(component.isPremisesNumberDropdownOpen).toBe(true);
 
 });
+
+
+
+
+ it('should set properties correctly when onLocationChange is called', () => {
+   
+    const mockLocation = {
+      locationId: '123',
+      facilityName: 'Test Location',
+    };
+
+
+    component.locationClicked = false;
+    component.invoiceInformation = { locationId: '0' };
+    component.locationName = '';
+    component.searchTextLocation = '';
+    component.islocationDropdownOpen = false;
+    component.locationSelected = false;
+    component.accountsMappingList = []; 
+
+    component.onLocationChange(mockLocation);
+
+    expect(component.locationClicked).toBe(true);
+    expect(component.invoiceInformation.locationId).toBe('123');
+    expect(component.locationName).toBe('Test Location');
+    expect(component.searchTextLocation).toBe('');
+    expect(component.islocationDropdownOpen).toBe(false); 
+ 
+  });
