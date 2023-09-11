@@ -644,3 +644,32 @@ it('should set addInvoiceClicked to true when addInvoice() is called', () => {
 
 console.log(Array.isArray(this.provider[providerId]));
 console.log(Array.isArray(this.provider[providerName]));
+
+
+
+it('should set properties correctly when onProviderChange is called', () => {
+
+    const mockProvider = {
+      providerId: 100,
+      providerName: 'Test Provider',
+    };
+
+
+    component.providerclicked = false;
+    component.invoiceInformation = { providerId: 0 }; 
+    component.providerName = '';
+    component.searchTextProvider = '';
+    component.isProviderDropdownOpen = false;
+    component.providerSelected = false;
+    component.accountsMappingList = []; 
+
+    component.onProviderChange(mockProvider);
+
+  
+    expect(component.providerclicked).toBe(true);
+    expect(component.invoiceInformation.providerId).toBe(100);
+    expect(component.providerName).toBe('Test Provider');
+    expect(component.searchTextProvider).toBe('');
+    expect(component.isProviderDropdownOpen).toBe(false); 
+   
+  });
