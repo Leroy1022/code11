@@ -767,3 +767,15 @@ expect(component.isPremisesNumberDropdownOpen).toBe(true);
     expect(component.islocationDropdownOpen).toBe(false); 
  
   });
+ it('should update utilityset correctly when getCommodityByAccNo() is called', () => {
+    const mockAccountsMappingList = [
+      { AccountNumber: 'accountNumber1', CommodityName: 'Commodity1' },
+      { AccountNumber: 'accountNumber2', CommodityName: 'Commodity2' },
+      { AccountNumber: 'accountNumber1', CommodityName: 'Commodity3' },
+    ];
+
+    component.accountsMappingList = mockAccountsMappingList;
+    component.invoiceInformation.accountNumber = 'accountNumber1';
+    component.getCommodityByAccNo();
+    expect(component.utilityset).toEqual(new Set(['Commodity1', 'Commodity3']));
+  });
