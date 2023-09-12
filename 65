@@ -9,3 +9,15 @@ it('should log an error when getLocationList() fails', () => {
       expect(console.log).toHaveBeenCalledWith(errorMessage);
     }, 0);
   });
+
+
+ it('should log an error when getCurrencySymbolList() fails', fakeAsync(() => {
+    const errorMessage = 'Error fetching the currency list!!!';
+    const mockUBMCommonService = jasmine.createSpyObj('UBMCommonService', ['getCurrencySymbolList']);
+    mockUBMCommonService.getCurrencySymbolList.and.returnValue(throwError(errorMessage)); 
+    component.ubmCommonService = mockUBMCommonService;
+    spyOn(console, 'log');
+    component.getCurrencySymbolList();
+    tick();
+    expect(console.log).toHaveBeenCalledWith(errorMessage);
+  }));
