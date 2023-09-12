@@ -110,3 +110,22 @@ it('should update properties and call getInvoiceDetails when apply() is called',
     expect(component.invoiceInformation.locationId).toBe('');
     expect(component.GetAllDropdownLists).toHaveBeenCalled();
   });
+
+
+it('should update PremiseNumber when onPremiseNumberChange() is called', () => {
+
+    component.premiseIdClicked = false;
+    component.invoiceInformation.premiseNumber = '123';
+    component.premisesName = 'PremisesName';
+    component.searchTextPremisesId = 'SearchTextPremisesId';
+    component.isPremiseDropdownOpen = true;
+
+    const mockValue = '456';
+    component.onPremiseNumberChange(mockValue);
+
+    expect(component.premiseIdClicked).toBe(true);
+    expect(component.invoiceInformation.premiseNumber).toBe(mockValue);
+    expect(component.premisesName).toBe(mockValue);
+    expect(component.searchTextPremisesId).toBe('');
+    expect(component.isPremiseDropdownOpen).toBe(false);
+  });
