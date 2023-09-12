@@ -1,0 +1,11 @@
+it('should log an error when getLocationList() fails', () => {
+    const errorMessage = 'Error fetching the location list!!!';
+    const mockUBMCommonService = jasmine.createSpyObj('UBMCommonService', ['getLocationList']);
+    mockUBMCommonService.getLocationList.and.returnValue(throwError(errorMessage)); 
+    component.ubmCommonService = mockUBMCommonService;
+    spyOn(console, 'log');
+    component.getLocationList();
+    setTimeout(() => {
+      expect(console.log).toHaveBeenCalledWith(errorMessage);
+    }, 0);
+  });
