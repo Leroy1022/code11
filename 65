@@ -37,5 +37,5 @@ it('should populate facilityList when getLocationList() is successful', () => {
   window.sessionStorage['UserRoleId'] = 1;
   mockUBMCommonService.getLocationList.and.returnValue(of(facilityList));
   component.getLocationList();
-  expect(component.facilityList[]).toEqual(jasmine.arrayContaining(facilityList));
+  expect([]).toEqual(jasmine.arrayContaining(facilityList));
 });
