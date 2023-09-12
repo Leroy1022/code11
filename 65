@@ -39,3 +39,14 @@ it('should populate facilityList when getLocationList() is successful', () => {
   component.getLocationList();
   expect(component.facilityList).toEqual([]);
 });
+
+
+
+  it('should fetch and process years correctly when getYearList is called', () => {
+    const mockYears = [2022, 2023]; 
+
+    invoiceYearService.getInvoiceYears.and.returnValue(of(mockYears));
+    component.getYearList();
+    expect(component.YearList).toEqual(mockYears);
+    expect(component.Year.length).toBe(mockYears.length);
+    });
