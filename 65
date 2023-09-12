@@ -129,3 +129,16 @@ it('should update PremiseNumber when onPremiseNumberChange() is called', () => {
     expect(component.searchTextPremisesId).toBe('');
     expect(component.isPremiseDropdownOpen).toBe(false);
   });
+
+it('should call CommonService methods when ngOnDestroy() is called', () => {
+ 
+    spyOn(commonService, 'setInvoiceSummaryExpanded');
+    spyOn(commonService, 'setInvoiceSummaryEnabled');
+    spyOn(commonService, 'enableUtilitySection');
+
+    component.ngOnDestroy();
+
+    expect(commonService.setInvoiceSummaryExpanded).toHaveBeenCalledWith(false);
+    expect(commonService.setInvoiceSummaryEnabled).toHaveBeenCalledWith(false);
+    expect(commonService.enableUtilitySection).toHaveBeenCalledWith(false);
+  });
