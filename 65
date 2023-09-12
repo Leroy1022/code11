@@ -39,3 +39,7 @@ it('should populate facilityList when getLocationList() is successful', () => {
   component.getLocationList();
   expect(component.facilityList).toEqual(jasmine.arrayContaining(facilityList));
 });
+const sortedExpected = facilityList.slice().sort((a, b) => a.Id.localeCompare(b.Id));
+  const sortedActual = component.facilityList.slice().sort((a, b) => a.Id.localeCompare(b.Id));
+
+  expect(sortedActual).toEqual(sortedExpected);
