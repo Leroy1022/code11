@@ -21,3 +21,21 @@ it('should log an error when getLocationList() fails', () => {
     tick();
     expect(console.log).toHaveBeenCalledWith(errorMessage);
   }));
+
+
+it('should populate facilityList when getLocationList() is successful', () => {
+  const facilityList = [
+    {
+      Id: '1',
+      Name: 'Asset Manager - Location',
+    },
+    {
+      Id: '2',
+      Name: 'Energy Location MR',
+    },
+  ];
+  window.sessionStorage['UserRoleId'] = 1;
+  mockUBMCommonService.getLocationList.and.returnValue(of(facilityList));
+  component.getLocationList();
+  expect(component.facilityList).toEqual(jasmine.arrayContaining(facilityList));
+});
