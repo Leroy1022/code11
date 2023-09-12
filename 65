@@ -76,3 +76,37 @@ it('should update properties and call getInvoiceDetails when apply() is called',
 
     expect(component.retainInvoiceYearList).toEqual(mockYear);
   });
+
+  it('should reset dropdown properties and call GetAllDropdownLists when resetDropdown() is called ', () => {
+    component.locationClicked = true;
+    component.buildingClicked = true;
+    component.providerClicked = true;
+    component.accountNumberClicked = true;
+    component.premiseIdClicked = true;
+    component.invoiceInformation.locationId = '123';
+    component.invoiceInformation.buildingId = '456';
+    component.invoiceInformation.providerId = 789;
+    component.invoiceInformation.accountNumber = 'ABC';
+    component.locationName = 'LocationName';
+    component.buildingName = 'BuildingName';
+    component.providerName = 'ProviderName';
+    component.accountName = 'AccountName';
+    component.premisesName = 'PremisesName';
+    component.utilityType = 'UtilityType';
+    component.accountGroupNumber = 'AccountGroupNumber';
+    component.premiseNumberList = [1, 2, 3];
+    component.searchTextLocation = 'SearchTextLocation';
+    component.searchTextBuilding = 'SearchTextBuilding';
+    component.searchTextProvider = 'SearchTextProvider';
+    component.searchTextAccountNumber = 'SearchTextAccountNumber';
+    component.searchTextPremisesId = 'SearchTextPremisesId';
+    spyOn(component, 'GetAllDropdownLists');
+    component.resetDropdown();
+    expect(component.locationClicked).toBe(false);
+    expect(component.buildingClicked).toBe(false);
+    expect(component.providerClicked).toBe(false);
+    expect(component.accountNumberClicked).toBe(false);
+    expect(component.premiseIdClicked).toBe(false);
+    expect(component.invoiceInformation.locationId).toBe('');
+    expect(component.GetAllDropdownLists).toHaveBeenCalled();
+  });
