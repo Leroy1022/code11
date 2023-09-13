@@ -169,3 +169,101 @@ it('should update properties when apply() is called', () => {
 
     expect(component.retainInvoiceYearList).toEqual(mockYear);
   });
+
+
+
+ it('should apply filter when retainFilterArray is not empty', () => {
+    // Set up initial data for testing
+    component.actualInvoiceData = /* set up your test data here */;
+    component.filteredResult = /* set up your test data here */;
+    component.retainFilterArray = /* set up your test data here */;
+
+    // Call applyResetFilter
+    component.applyResetFilter();
+
+    // Make assertions based on your specific test data and logic
+    expect(component.gridApplyFilterResult).toEqual(/* expected result based on your test data and logic */);
+    expect(component.totalItem).toBe(/* expected value */);
+    expect(component.result).toEqual(/* expected result based on your test data and logic */);
+    expect(component.nooffilters).toBe(/* expected value */);
+
+    // Verify other conditions and expectations as needed
+  });
+
+  it('should reset filter when retainFilterArray is empty', () => {
+    // Set up initial data for testing when retainFilterArray is empty
+    component.actualInvoiceData = /* set up your test data here */;
+    component.filteredResult = /* set up your test data here */;
+    component.retainFilterArray = []; // Empty array
+
+    component.applyResetFilter();
+
+    // Make assertions based on your specific test data and logic for the reset scenario
+    expect(component.gridApplyFilterResult).toEqual(/* expected result based on your test data and logic for reset */);
+    expect(component.totalItem).toBe(/* expected value for reset */);
+    expect(component.result).toEqual(/* expected result based on your test data and logic for reset */);
+    expect(component.nooffilters).toBe(/* expected value for reset */);
+
+  });
+
+
+it('should add value to checkedList when status is true when getSelectedValue() is called', () => {
+
+    component.checkedList = ['Value1', 'Value2'];
+    component.Year = [
+      { IsChecked: false },
+      { IsChecked: false },
+    ];
+
+    component.getSelectedValue(true, 'Value3');
+
+
+    expect(component.checkedList).toEqual(['Value1', 'Value2', 'Value3']);
+  });
+
+  it('should remove value from checkedList when status is false when getSelectedValue() is called', () => {
+ 
+    component.checkedList = ['Value1', 'Value2', 'Value3'];
+    component.Year = [
+      { IsChecked: false },
+      { IsChecked: false },
+    ];
+
+    component.getSelectedValue(false, 'Value2');
+
+    expect(component.checkedList).toEqual(['Value1', 'Value3']);
+  });
+
+  it('should disable Year items when more than 3 values are checked when getSelectedValue() is called', () => {
+
+    component.Year = [
+      { IsChecked: false, IsYearDisabled: false },
+      { IsChecked: false, IsYearDisabled: false },
+      { IsChecked: false, IsYearDisabled: false },
+    ];
+
+    component.checkedList = ['Value1', 'Value2', 'Value3'];
+
+    component.getSelectedValue(true, 'Value4');
+
+    expect(component.Year[0].IsYearDisabled).toBe(true);
+    expect(component.Year[1].IsYearDisabled).toBe(true);
+    expect(component.Year[2].IsYearDisabled).toBe(true);
+  });
+
+  it('should enable all Year items when 3 or fewer values are checked when getSelectedValue() is called', () => {
+
+    component.Year = [
+      { IsChecked: false, IsYearDisabled: true },
+      { IsChecked: false, IsYearDisabled: true },
+      { IsChecked: false, IsYearDisabled: true },
+    ];
+
+    component.checkedList = ['Value1', 'Value2', 'Value3'];
+
+    component.getSelectedValue(false, 'Value1');
+
+    expect(component.Year[0].IsYearDisabled).toBe(false);
+    expect(component.Year[1].IsYearDisabled).toBe(false);
+    expect(component.Year[2].IsYearDisabled).toBe(false);
+  });
