@@ -306,3 +306,25 @@ it('should update selectAllRows to true when updateSelectedAllState() is called'
     expect(component.selectAllRows).toBe(false);
     expect(component.indeterminate).toBe(true);
   });
+
+
+
+  it('should call AddAccount when AddAccount() is called ', () => {
+
+    const ngFormMock: NgForm = {
+      resetForm: () => {}, 
+    } as any; 
+
+    component.accountDetails();
+
+    spyOn(UBMCommonService, 'AddAccount').and.returnValue({
+      subscribe: (callbacks: any) => {
+        callbacks.next(/* Provide a mock result here */);
+        callbacks.complete();
+      },
+    });
+    component.addAccount(ngFormMock);
+    expect(component.isLoading).toBe(true);
+    expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(ngFormMock.resetForm).toHaveBeenCalled();
+  });
