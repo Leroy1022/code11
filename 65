@@ -491,3 +491,16 @@ it('should set accountGridData and related properties when getAccountGridData() 
     expect(component.buildingList).toEqual(mockResponse); 
 
   });
+
+
+it('should update facilityList when getLocationList is called successfully', () => {
+    const mockResponse = [
+      UserRoleID: 1;
+    ];
+
+    spyOn(UBMCommonService, 'getLocationList').and.returnValue(of(mockResponse)); 
+
+    component.getLocationList();
+    expect(component.facilityList).toEqual(mockResponse); // Expect facilityList to match the mock response
+
+ });
