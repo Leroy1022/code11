@@ -23,6 +23,7 @@ it('should log an error when getLocationList() fails', () => {
   }));
 
 
+
 it('should populate facilityList when getLocationList() is successful', () => {
   const facilityList = [
     {
@@ -448,6 +449,9 @@ it('should set invoiceExistModal to true when isInvoiceMapped is true when delet
 it('should set accountGridData and related properties when getAccountGridData() is called successfully', () => {
 
     const mockResponse = [
+      LocationId: 1, 
+      CommodityId: 2, 
+      AccountId: 3,
     ];
 
     spyOn(ubmService, 'getAccountList').and.returnValue(of(mockResponse)); 
@@ -459,4 +463,31 @@ it('should set accountGridData and related properties when getAccountGridData() 
 
   });
 
+ it('should update supplierAccountList and related properties when getSupplierAccount is called successfully', () => {
+   
+    const mockResponse = [
+      LocationId: 1, 
+      CommodityId: 2, 
+      AccountId: 3,
+    ];
 
+    spyOn(ubmService, 'getSupplierAccount').and.returnValue(of(mockResponse));
+
+
+    component.getSupplierAccount();
+
+    expect(component.accountDetails.IsSupplierAccount).toBe('Yes');
+    expect(component.supplierAccountList).toEqual(mockResponse); 
+
+  });
+
+
+  it('should update buildingList and CurrencyCode when getBuildingByLocation() is called successfully', () => {
+    const mockResponse = [  
+     LocationId: 1,
+    ];
+    spyOn(ubmService, 'getBuildingListByLocation').and.returnValue(of(mockResponse)); 
+    component.getBuildingByLocation();
+    expect(component.buildingList).toEqual(mockResponse); 
+
+  });
