@@ -142,3 +142,30 @@ it('should call CommonService methods when ngOnDestroy() is called', () => {
     expect(commonService.setInvoiceSummaryEnabled).toHaveBeenCalledWith(false);
     expect(commonService.enableUtilitySection).toHaveBeenCalledWith(false);
   });
+
+
+it('should update properties when apply() is called', () => {
+
+    const mockYear = [
+      { Year: 2022, IsYearDisabled: false, IsChecked: true },
+      { Year: 2023, IsYearDisabled: true, IsChecked: false },
+    ];
+
+    component.Year = mockYear;
+    component.isLoading = false;
+    component.invoiceYearApplyClicked = false;
+    component.showDropDown = true;
+    component.tempResult = [];
+
+    spyOn(component, 'getInvoiceDetails');
+
+    component.apply();
+
+    expect(component.isLoading).toBe(true);
+    expect(component.invoiceYearApplyClicked).toBe(true);
+    expect(component.showDropDown).toBe(false);
+    expect(component.tempResult).toEqual([]);
+    expect(component.getInvoiceDetails).toHaveBeenCalled();
+
+    expect(component.retainInvoiceYearList).toEqual(mockYear);
+  });
