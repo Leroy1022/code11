@@ -277,3 +277,32 @@ it('should reset component properties when reset() is called', () => {
     expect(component.customRange).toBe(false);
     expect(component.showDateRange).toBe(false);
   });
+it('should update selectAllRows to true when updateSelectedAllState() is called', () => {
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(true);
+    expect(component.indeterminate).toBe(false);
+  });
+
+  it('should update selectAllRows to false  when updateSelectedAllState() is called', () => {
+ 
+    component.result.forEach((item) => {
+      item.IsRowChecked = false;
+    });
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(false);
+    expect(component.indeterminate).toBe(false);
+  });
+
+  it('should set indeterminate to true when some items are checked when updateSelectedAllState() is called', () => {
+
+    component.result[0].IsRowChecked = false;
+
+    component.updateSelectedAllState();
+
+    expect(component.selectAllRows).toBe(false);
+    expect(component.indeterminate).toBe(true);
+  });
