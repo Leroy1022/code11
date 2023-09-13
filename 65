@@ -386,3 +386,77 @@ it('should delete the account and show success notification when deleteAccount i
     expect(ngFormMock.resetForm).toHaveBeenCalled();
 
   });
+
+it('should update selectedRowNum correctly based on the provided index when retainRowState() is called', () => {
+
+    const sampleIndex = 2;
+
+    component.retainRowState(sampleIndex);
+
+    expect(component.selectedRowNum).toBe(sampleIndex); 
+
+    component.retainRowState(sampleIndex);
+
+    expect(component.selectedRowNum).toBe(null); 
+  });
+
+it('should set invoiceExistModal to true when isInvoiceMapped is true when deleteAccountValidation() is called', () => {
+
+    component.isInvoiceMapped = true;
+
+    component.deleteAccountValidation();
+
+    expect(component.invoiceExistModal).toBe(true); 
+  });
+
+  it('should set invoiceExistModal to false when isInvoiceMapped is false when deleteAccountValidation() is called', () => {
+  
+    component.isInvoiceMapped = false;
+
+    component.deleteAccountValidation();
+
+    expect(component.invoiceExistModal).toBe(false); 
+  });
+
+
+  it('should update the account and show success notification when updateAccount is called successfully when updateAccount is called', () => {
+
+    const ngFormMock: NgForm = {
+      resetForm: () => {}, 
+    } as any;
+
+    spyOn(ubmService, 'updateAccount').and.returnValue({
+      subscribe: (callbacks: any) => {
+        callbacks.next(true); 
+        callbacks.complete();
+      },
+    });
+
+
+    component.updateAccount(ngFormMock);
+
+    expect(component.isLoading).toBe(true);
+    expect(component.accountDetails.IsUpdate).toBe(false); 
+    expect(component.accountDetails.IsSupplierAccount).toBe('Yes'); 
+
+    expect(ubmService.updateAccount).toHaveBeenCalledWith(component.accountDetails);
+
+    expect(ngFormMock.resetForm).toHaveBeenCalled();
+
+  });
+
+it('should set accountGridData and related properties when getAccountGridData() is called successfully', () => {
+
+    const mockResponse = [
+    ];
+
+    spyOn(ubmService, 'getAccountList').and.returnValue(of(mockResponse)); 
+
+    component.getAccountGridData();
+
+    expect(component.isLoading).toBe(false); 
+    expect(component.accountGridData).toEqual(mockResponse); 
+
+  });
+
+
