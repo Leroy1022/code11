@@ -267,3 +267,13 @@ it('should add value to checkedList when status is true when getSelectedValue() 
     expect(component.Year[1].IsYearDisabled).toBe(false);
     expect(component.Year[2].IsYearDisabled).toBe(false);
   });
+it('should reset component properties when reset() is called', () => {
+ 
+    component.reset();
+
+    expect(component.invoiceYearApplyClicked).toBe(false);
+    expect(component.selectedStartDate).toBeUndefined();
+    expect(component.selectedEndDate).toBeUndefined();
+    expect(component.customRange).toBe(false);
+    expect(component.showDateRange).toBe(false);
+  });
