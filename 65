@@ -328,3 +328,8 @@ it('should update selectAllRows to true when updateSelectedAllState() is called'
     expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(ngFormMock.resetForm).toHaveBeenCalled();
   });
+
+it('should set isSubCommodityDropdownOpen to false when clickedoutsideSubCommodity() is called', () => {
+    component.clickedoutsideSubCommodity();
+    expect(component.isSubCommodityDropdownOpen).toBe(false);
+  });
