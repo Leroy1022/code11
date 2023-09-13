@@ -333,3 +333,13 @@ it('should set isSubCommodityDropdownOpen to false when clickedoutsideSubCommodi
     component.clickedoutsideSubCommodity();
     expect(component.isSubCommodityDropdownOpen).toBe(false);
   });
+
+
+it('should toggle isSubCommodityDropdownOpen property when toggleSubCommodityDropdown is called', () => {
+
+    const initialValue = component.isSubCommodityDropdownOpen;
+
+    component.toggleSubCommodityDropdown();
+
+    expect(component.isSubCommodityDropdownOpen).toBe(!initialValue); 
+  });
