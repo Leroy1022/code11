@@ -335,11 +335,54 @@ it('should set isSubCommodityDropdownOpen to false when clickedoutsideSubCommodi
   });
 
 
-it('should toggle isSubCommodityDropdownOpen property when toggleSubCommodityDropdown is called', () => {
+it('should toggle isSubCommodityDropdownOpen property when toggleSubCommodityDropdown() is called', () => {
 
     const initialValue = component.isSubCommodityDropdownOpen;
 
     component.toggleSubCommodityDropdown();
 
     expect(component.isSubCommodityDropdownOpen).toBe(!initialValue); 
+  });
+
+it('should reset searchText property to an empty string when resetDropdown() is called', () => {
+    component.resetDropdown();
+    expect(component.searchText).toBe(''); 
+  });
+
+  it('should update properties correctly when onSubCommodityListChange() is called', () => {
+  
+    const sampleValue = {
+      DisplayName: 'Sample Subcommodity',
+      Id: 123,
+    };
+
+    component.onSubCommodityListChange(sampleValue);
+
+    expect(component.selectedSubcomodity).toBe('Sample Subcommodity');
+    expect(component.accountDetails.SubcommodityId).toBe(123);
+    expect(component.issubcommodityDropdownOpen).toBe(false);
+    expect(component.searchText).toBe('');
+  });
+
+it('should delete the account and show success notification when deleteAccount is called', () => {
+
+    const ngFormMock: NgForm = {
+      resetForm: () => {},
+    } as any; 
+
+ 
+    spyOn(ubmService, 'deleteAccount').and.returnValue({
+      subscribe: (callbacks: any) => {
+        callbacks.next(true); 
+        callbacks.complete();
+      },
+    });
+
+    component.deleteAccount(ngFormMock);
+
+    expect(component.isLoading).toBe(true);
+    expect(ubmService.deleteAccount).toHaveBeenCalledWith(123); 
+
+    expect(ngFormMock.resetForm).toHaveBeenCalled();
+
   });
