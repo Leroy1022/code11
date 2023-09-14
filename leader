@@ -25,10 +25,10 @@ it('should update accountTypeList when getAccountType() is called successfully',
     const mockResponse = [
       // Add sample account type data here
     ];
-    spyOn(ubmService, 'getAccountType').and.returnValue(of(mockResponse)); // Use 'of' to create an observable
+    spyOn(ubmService, 'getAccountType').and.returnValue(of(mockResponse)); 
 
     component.getAccountType();
 
-    expect(component.accountTypeList).toEqual(mockResponse); // Expect accountTypeList to match the mock response
+    expect(component.accountTypeList).toEqual(mockResponse); 
 
   });
