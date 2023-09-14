@@ -74,3 +74,24 @@ it('should set onlyUrjanetLicense to true when isUjanetLicenseExistAndActive() r
 
     expect(component.onlyUrjanetLicense).toBe(false); 
   });
+
+
+
+it('should reset accountDetails and mark form as untouched when clearForm is called', () => {
+  
+    component.accountDetails = { /* Initial accountDetails values */ };
+    component.filterText = 'Initial filter text';
+
+    const mockForm: NgForm = {
+      form: {
+        markAsUntouched: jasmine.createSpy('markAsUntouched'), 
+      },
+    } as any; 
+
+    component.clearForm(mockForm);
+
+    expect(component.accountDetails).toEqual(new Account()); 
+    expect(component.filterText).toBe(''); 
+    expect(mockForm.form.markAsUntouched).toHaveBeenCalled(); 
+
+  });
