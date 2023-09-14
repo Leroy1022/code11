@@ -77,7 +77,7 @@ it('should set onlyUrjanetLicense to true when isUjanetLicenseExistAndActive() r
 
 
 
-it('should reset accountDetails and mark form as untouched when clearForm is called', () => {
+it('should reset accountDetails and mark form as untouched when clearForm() is called', () => {
   
     component.accountDetails = { /* Initial accountDetails values */ };
     component.filterText = 'Initial filter text';
