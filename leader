@@ -56,3 +56,21 @@ it('should update accountTypeList when getAccountType() is called successfully',
     expect(component.accountTypeList).toEqual(mockResponse); 
 
   });
+
+it('should set onlyUrjanetLicense to true when isUjanetLicenseExistAndActive() returns true', () => {
+
+    spyOn(commonService, 'isUjanetLicenseExistAndActive').and.returnValue(true);
+
+    component.checkUrjanetLicense();
+
+    expect(component.onlyUrjanetLicense).toBe(true); 
+  });
+
+  it('should set onlyUrjanetLicense to false when isUjanetLicenseExistAndActive() returns false', () => {
+
+    spyOn(commonService, 'isUjanetLicenseExistAndActive').and.returnValue(false);
+
+    component.checkUrjanetLicense();
+
+    expect(component.onlyUrjanetLicense).toBe(false); 
+  });
