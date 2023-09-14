@@ -95,3 +95,17 @@ it('should reset accountDetails and mark form as untouched when clearForm() is c
     expect(mockForm.form.markAsUntouched).toHaveBeenCalled(); 
 
   });
+
+
+it('should update the account when updateAccount() is called', () => {
+    spyOn(yourService, 'updateAccount').and.returnValue(of(true));
+    component.updateAccount({} as NgForm); 
+    expect(component.isLoading).toBe(false); 
+  });
+
+  it('should handle an error when updateAccount() is called', () => {
+    spyOn(yourService, 'updateAccount').and.returnValue(throwError('Some error'));
+    component.updateAccount({} as NgForm);
+    expect(component.isLoading).toBe(false); 
+
+  });
