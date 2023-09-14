@@ -1,4 +1,28 @@
- it('should update commodityList when getCommodityList() is called successfully', () => {
+it('should delete the account and show success notification when deleteAccount() is called', () => {
+
+    const ngFormMock: NgForm = {
+      resetForm: () => {},
+    } as any; 
+
+ 
+    spyOn(UBMCommonService, 'deleteAccount').and.returnValue({
+      subscribe: (callbacks: any) => {
+        callbacks.next(true); 
+        callbacks.complete();
+      },
+    });
+
+    component.deleteAccount(ngFormMock);
+
+    expect(component.isLoading).toBe(true);
+    expect(ubmService.deleteAccount).toHaveBeenCalledWith(123); 
+
+    expect(ngFormMock.resetForm).toHaveBeenCalled();
+
+  });
+
+
+it('should update commodityList when getCommodityList() is called successfully', () => {
     const mockResponse = [
       // Add sample commodity data here
     ];
