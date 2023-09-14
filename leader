@@ -1,0 +1,34 @@
+ it('should update commodityList when getCommodityList() is called successfully', () => {
+    const mockResponse = [
+      // Add sample commodity data here
+    ];
+    spyOn(UBMCommonService, 'getCommodityList').and.returnValue(of(mockResponse)); 
+    component.getCommodityList();
+    expect(component.commodityList).toEqual(mockResponse); 
+  });
+
+it('should update providerList when getProviderList() is called successfully', () => {
+
+    const mockResponse = [
+      // Add sample provider data here
+    ];
+
+    spyOn(UBMCommonService, 'getProviderList').and.returnValue(of(mockResponse)); 
+
+    component.getProviderList();
+
+    expect(component.providerList).toEqual(mockResponse); 
+
+  });
+
+it('should update accountTypeList when getAccountType() is called successfully', () => {
+    const mockResponse = [
+      // Add sample account type data here
+    ];
+    spyOn(ubmService, 'getAccountType').and.returnValue(of(mockResponse)); // Use 'of' to create an observable
+
+    component.getAccountType();
+
+    expect(component.accountTypeList).toEqual(mockResponse); // Expect accountTypeList to match the mock response
+
+  });
