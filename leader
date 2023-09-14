@@ -7,7 +7,7 @@ it('should delete the account and show success notification when deleteAccount()
  
     spyOn(UBMCommonService, 'deleteAccount').and.returnValue({
       subscribe: (callbacks: any) => {
-        callbacks.next(true); 
+        callbacks.next("true"); 
         callbacks.complete();
       },
     });
