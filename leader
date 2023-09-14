@@ -109,3 +109,38 @@ it('should update the account when updateAccount() is called', () => {
     expect(component.isLoading).toBe(false); 
 
   });
+
+
+
+ it('should return true when checkDuplicate() is called', () => {
+    component.accountDetails ;
+    component.accountGridPageData;
+
+    const mockForm: NgForm = {
+      form: {
+        markAsUntouched: jasmine.createSpy('markAsUntouched'), // Spy on markAsUntouched
+      },
+    } as any;
+
+    const result = component.checkDuplicate('add', mockForm);
+
+    expect(result).toBe(true); 
+    expect(mockForm.form.markAsUntouched).toHaveBeenCalled(); 
+
+  });
+
+  it('should return true and clear the form when editingwhen checkDuplicate() is called', () => {
+  
+    component.accountDetails = { accountId: 1 };
+
+    const mockForm: NgForm = {
+      form: {
+        markAsUntouched: jasmine.createSpy('markAsUntouched'),
+      },
+    } as any; 
+
+    const result = component.checkDuplicate('edit', mockForm);
+
+    expect(result).toBe(true); 
+    expect(mockForm.form.markAsUntouched).toHaveBeenCalled(); 
+  });
