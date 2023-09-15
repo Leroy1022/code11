@@ -144,3 +144,81 @@ it('should update the account when updateAccount() is called', () => {
     expect(result).toBe(true); 
     expect(mockForm.form.markAsUntouched).toHaveBeenCalled(); 
   });
+
+
+
+  it('should call Subcommodity when getSubcommodity() is called ', () => {
+    const subCommodityData: SubCommodity[] = [
+      { SerialNumber: 3 },
+      { SerialNumber: 1 },
+      { SerialNumber: 2 },
+    ];
+    
+    spyOn(ubmService, 'getSubcommodity').and.returnValue(of(subCommodityData));
+
+    component.ngOnInit();
+
+    expect(UBMCommonService.getSubcommodity).toHaveBeenCalled();
+    expect(component.subCommodityList).toEqual([
+      { SerialNumber: 1 },
+      { SerialNumber: 2 },
+      { SerialNumber: 3 },
+    ]);
+  });
+
+  it('should handle error  when getSubcommodity() is called', () => {
+    const errorMessage = 'Service error';
+    spyOn(UBMCommonService, 'getSubcommodity').and.returnValue(
+      throwError(errorMessage)
+    );
+    component.ngOnInit();
+    expect(UBMCommonService.getSubcommodity).toHaveBeenCalled();
+    expect(component.subCommodityList).toEqual([]);
+    expect(console.log).toHaveBeenCalledWith(errorMessage);
+  });
+
+
+  it('should add an account when AddAccount() is called', () => {
+    // Mock the service and form
+    spyOn(ubmService, 'AddAccount').and.returnValue(of({}));
+    spyOn(component, 'getAccountGridData');
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.addAccount(accountForm);
+
+    expect(component.isLoading).toBe(false);
+    expect(component.checkUBMLicense).toBe(false);
+    expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(component.getAccountGridData).toHaveBeenCalled();
+    expect(accountForm.resetForm).toHaveBeenCalled();
+    // You should also test that success notification is shown.
+  });
+
+  it('should handle errors when AddAccount() is called', () => {
+    const errorMessage = 'Add account error';
+    spyOn(ubmService, 'AddAccount').and.returnValue(throwError(errorMessage));
+    spyOn(component, 'clearForm');
+    spyOn(console, 'log');
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.addAccount(accountForm);
+
+    expect(component.isLoading).toBe(false);
+    expect(component.checkUBMLicense).toBe(false);
+    expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(component.clearForm).toHaveBeenCalledWith(accountForm);
+    expect(console.log).toHaveBeenCalledWith(errorMessage);
+    // You should also test that error notification is shown.
+  });
+
+  it('should handle checkUBMLicense', () => {
+
+    spyOnProperty(component, 'checkUBMLicense', 'get').and.returnValue(true);
+    spyOn(notifyService, 'showError');
+
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.addAccount(accountForm);
+
+    expect(notifyService.showError).toHaveBeenCalledWith(component.Accounts.max_account_configured, '');
+  });
