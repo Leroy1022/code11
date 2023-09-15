@@ -179,7 +179,7 @@ it('should update the account when updateAccount() is called', () => {
 
 
   it('should add an account when AddAccount() is called', () => {
-    // Mock the service and form
+  
     spyOn(ubmService, 'AddAccount').and.returnValue(of({}));
     spyOn(component, 'getAccountGridData');
     const accountForm = { resetForm: () => {} } as NgForm;
@@ -191,7 +191,7 @@ it('should update the account when updateAccount() is called', () => {
     expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(component.getAccountGridData).toHaveBeenCalled();
     expect(accountForm.resetForm).toHaveBeenCalled();
-    // You should also test that success notification is shown.
+ 
   });
 
   it('should handle errors when AddAccount() is called', () => {
@@ -208,7 +208,7 @@ it('should update the account when updateAccount() is called', () => {
     expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(component.clearForm).toHaveBeenCalledWith(accountForm);
     expect(console.log).toHaveBeenCalledWith(errorMessage);
-    // You should also test that error notification is shown.
+
   });
 
   it('should handle checkUBMLicense', () => {
