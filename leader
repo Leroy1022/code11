@@ -180,7 +180,7 @@ it('should update the account when updateAccount() is called', () => {
 
   it('should add an account when AddAccount() is called', () => {
   
-    spyOn(ubmService, 'AddAccount').and.returnValue(of({}));
+    spyOn(UBMCommonService, 'AddAccount').and.returnValue(of({}));
     spyOn(component, 'getAccountGridData');
     const accountForm = { resetForm: () => {} } as NgForm;
     
@@ -188,7 +188,7 @@ it('should update the account when updateAccount() is called', () => {
 
     expect(component.isLoading).toBe(false);
     expect(component.checkUBMLicense).toBe(false);
-    expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(UBMCommonService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(component.getAccountGridData).toHaveBeenCalled();
     expect(accountForm.resetForm).toHaveBeenCalled();
  
@@ -196,7 +196,7 @@ it('should update the account when updateAccount() is called', () => {
 
   it('should handle errors when AddAccount() is called', () => {
     const errorMessage = 'Add account error';
-    spyOn(ubmService, 'AddAccount').and.returnValue(throwError(errorMessage));
+    spyOn(UBMCommonService, 'AddAccount').and.returnValue(throwError(errorMessage));
     spyOn(component, 'clearForm');
     spyOn(console, 'log');
     const accountForm = { resetForm: () => {} } as NgForm;
@@ -205,7 +205,7 @@ it('should update the account when updateAccount() is called', () => {
 
     expect(component.isLoading).toBe(false);
     expect(component.checkUBMLicense).toBe(false);
-    expect(ubmService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(UBMCommonService.AddAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(component.clearForm).toHaveBeenCalledWith(accountForm);
     expect(console.log).toHaveBeenCalledWith(errorMessage);
 
@@ -221,4 +221,40 @@ it('should update the account when updateAccount() is called', () => {
     component.addAccount(accountForm);
 
     expect(notifyService.showError).toHaveBeenCalledWith(component.Accounts.max_account_configured, '');
+  });
+
+it('should update an account when updateAccount() Is called ', () => {
+
+    spyOn(UBMCommonService, 'updateAccount').and.returnValue(of(true));
+    spyOn(component, 'getAccountGridData');
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.updateAccount(accountForm);
+
+    expect(component.isLoading).toBe(false);
+    expect(component.checkDuplicate).toHaveBeenCalled();
+    expect(component.accountDetails.IsUpdate).toBe(false);
+    expect(UBMCommonService.updateAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(component.getAccountGridData).toHaveBeenCalled();
+    expect(component.startRowNum).toBe(1);
+    expect(accountForm.resetForm).toHaveBeenCalled();
+  
+  });
+
+  it('should handle errorswhen updateAccount() Is called', () => {
+    const errorMessage = 'Update account error';
+    spyOn(UBMCommonService, 'updateAccount').and.returnValue(throwError(errorMessage));
+    spyOn(component, 'clearForm');
+    spyOn(console, 'log');
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.updateAccount(accountForm);
+
+    expect(component.isLoading).toBe(false);
+    expect(component.checkDuplicate).toHaveBeenCalled();
+    expect(component.accountDetails.IsUpdate).toBe(false);
+    expect(UBMCommonService.updateAccount).toHaveBeenCalledWith(component.accountDetails);
+    expect(component.clearForm).toHaveBeenCalledWith(accountForm);
+    expect(console.log).toHaveBeenCalledWith(errorMessage);
+
   });
