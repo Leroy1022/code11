@@ -357,3 +357,16 @@ it('should reset all flags when changeFlagHeader() is called', () => {
     expect(component.resetAllFlag).toHaveBeenCalled();
     expect(data.clickFlag).toBe(true);
   });
+it('should reset all flags in accountHeaderColumns to false when resetAllFlag() is called', () => {
+
+    component.accountHeaderColumns = [
+      { clickFlag: true },
+      { clickFlag: false },
+      { clickFlag: true },
+    ];
+
+    component.resetAllFlag();
+
+    component.accountHeaderColumns.forEach((v) => {
+      expect(v.clickFlag).toBe(false);
+    });
