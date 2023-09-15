@@ -370,3 +370,15 @@ it('should reset all flags in accountHeaderColumns to false when resetAllFlag() 
     component.accountHeaderColumns.forEach((v) => {
       expect(v.clickFlag).toBe(false);
     });
+
+it('should reset the current page to 1 and emit page data when pageSizeChanged() is called ', () => {
+
+    component.currentPage = 3; 
+    component.pageSize = 10; 
+    spyOn(component, 'emitPageData');
+
+    component.pageSizeChanged();
+
+    expect(component.currentPage).toBe(1); // Current page should be reset to 1
+    expect(component.emitPageData).toHaveBeenCalledWith(1, component.pageSize);
+  });
