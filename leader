@@ -382,3 +382,87 @@ it('should reset the current page to 1 and emit page data when pageSizeChanged()
     expect(component.currentPage).toBe(1); // Current page should be reset to 1
     expect(component.emitPageData).toHaveBeenCalledWith(1, component.pageSize);
   });
+
+
+  it('should return false and show an error when addAccountValidation() is called', () => {
+
+    component.accountDetails = {
+      AccountNumber: '12345',
+      CommodityId: 1,
+      PremiseNumber: null,
+      AccountGroupNumber: null,
+    };
+    component.accountGridPageData = [
+
+      {
+        AccountNumber: '12345',
+        CommodityId: 1,
+        PremiseNumber: null,
+        AccountGroupNumber: null,
+      },
+    ];
+    spyOn(component.notifyService, 'showError');
+
+    const isValid = component.addAccountValidation();
+
+    expect(isValid).toBe(false);
+    expect(component.notifyService.showError).toHaveBeenCalledWith(
+      component.Accounts.record_exists_premiseId_group,
+      ''
+    );
+  });
+
+  it('should return false and show an error when addAccountValidation() is called', () => {
+
+    component.accountDetails = {
+      AccountNumber: '12345',
+      CommodityId: 1,
+      ProviderId: 2,
+      PremiseNumber: 'ABC123',
+      AccountGroupNumber: 'GroupA',
+    };
+    component.accountGridPageData = [
+
+      {
+        AccountNumber: '12345',
+        CommodityId: 1,
+        ProviderId: 2,
+        PremiseNumber: 'ABC123',
+        AccountGroupNumber: 'GroupA',
+      },
+    ];
+    spyOn(component.notifyService, 'showError');
+
+    const isValid = component.addAccountValidation();
+
+    expect(isValid).toBe(false);
+    expect(component.notifyService.showError).toHaveBeenCalledWith(
+      component.Accounts.record_already_exists,
+      ''
+    );
+  });
+
+  it('should return true when addAccountValidation() is called', () => {
+
+    component.accountDetails = {
+      AccountNumber: '12345',
+      CommodityId: 1,
+      ProviderId: 2,
+      PremiseNumber: 'ABC123',
+      AccountGroupNumber: 'GroupA',
+    };
+    component.accountGridPageData = [
+
+      {
+        AccountNumber: '67890',
+        CommodityId: 3,
+        ProviderId: 4,
+        PremiseNumber: 'XYZ789',
+        AccountGroupNumber: 'GroupB',
+      },
+    ];
+
+    const isValid = component.addAccountValidation();
+
+    expect(isValid).toBe(true);
+  });
