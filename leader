@@ -241,7 +241,7 @@ it('should update an account when updateAccount() Is called ', () => {
   
   });
 
-  it('should handle errorswhen updateAccount() Is called', () => {
+  it('should handle errors when updateAccount() Is called', () => {
     const errorMessage = 'Update account error';
     spyOn(UBMCommonService, 'updateAccount').and.returnValue(throwError(errorMessage));
     spyOn(component, 'clearForm');
@@ -256,5 +256,67 @@ it('should update an account when updateAccount() Is called ', () => {
     expect(UBMCommonService.updateAccount).toHaveBeenCalledWith(component.accountDetails);
     expect(component.clearForm).toHaveBeenCalledWith(accountForm);
     expect(console.log).toHaveBeenCalledWith(errorMessage);
+
+  });
+ 
+it('should handle onlyUrjanetLicense when checkUrjanetLicense() Is called', () => { 
+component.checkUrjanetLicense();
+expect(component.onlyUrjanetLicense) .toEqual (Component.commonService.isUjanetLicenseExistAndActive());
+});
+
+it('should delete an account when deleteAccount() is called', () => {
+
+    spyOn(ubmService, 'deleteAccount').and.returnValue(of(true));
+    spyOn(component, 'getAccountGridData');
+    const accountForm = { resetForm: () => {} } as NgForm;
+    
+    component.deleteAccount(accountForm);
+
+    expect(component.isLoading).toBe(false);
+    expect(notifyService.showError).not.toHaveBeenCalled();
+    expect(ubmService.deleteAccount).toHaveBeenCalledWith(component.accountDetails.AccountId);
+    expect(component.getAccountGridData).toHaveBeenCalled();
+    expect(component.clearForm).toHaveBeenCalledWith(accountForm);
+
+  });
+
+it('should return false in "add" mode when checkDuplicate() is called', () => {
+
+    component.accountDetails = {
+      ProviderId: 1,
+      CommodityId: 2,
+      AccountNumber: '12345',
+
+    };
+    component.accountGridPageData = [
+
+      { ProviderId: 3, CommodityId: 4, AccountNumber: '67890', /* Other properties... */ },
+      { ProviderId: 5, CommodityId: 6, AccountNumber: 'abcdef', /* Other properties... */ },
+    ];
+    const accountForm = { resetForm: () => {} } as NgForm;
+
+    const result = component.checkDuplicate('add', accountForm);
+
+    expect(result).toBe(false);
+  });
+
+  it('should return true in "add" mode when checkDuplicate() is called', () => {
+
+    component.accountDetails = {
+      ProviderId: 1,
+      CommodityId: 2,
+      AccountNumber: '12345',
+
+    };
+    component.accountGridPageData = [
+
+      { ProviderId: 1, CommodityId: 2, AccountNumber: '12345', /* Other properties... */ },
+      { ProviderId: 5, CommodityId: 6, AccountNumber: 'abcdef', /* Other properties... */ },
+    ];
+    const accountForm = { resetForm: () => {} } as NgForm;
+
+    const result = component.checkDuplicate('add', accountForm);
+
+    expect(result).toBe(true);
 
   });
