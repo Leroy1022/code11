@@ -346,3 +346,14 @@ it('should do nothing when previousPage() Is called', () => {
     expect(component.currentPage).toBe(PCurrentpage - 1);
     expect(component.emitPageData).toHaveBeenCalledWith(PCurrentpage - 1, PpageSize);
   });
+
+it('should reset all flags when changeFlagHeader() is called', () => {
+
+    const data: AccountHeaderDetails = { clickFlag: false };
+    spyOn(component, 'resetAllFlag');
+
+    component.changeFlagHeader(data);
+
+    expect(component.resetAllFlag).toHaveBeenCalled();
+    expect(data.clickFlag).toBe(true);
+  });
