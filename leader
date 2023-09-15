@@ -148,22 +148,18 @@ it('should update the account when updateAccount() is called', () => {
 
 
   it('should call Subcommodity when getSubcommodity() is called ', () => {
-    const subCommodityData: SubCommodity[] = [
-      { SerialNumber: 3 },
-      { SerialNumber: 1 },
-      { SerialNumber: 2 },
-    ];
-    
+    const subCommodityData: SubCommodity = { 
+    SerialNumber: 3 
+    };
+      
     spyOn(ubmService, 'getSubcommodity').and.returnValue(of(subCommodityData));
 
     component.ngOnInit();
 
     expect(UBMCommonService.getSubcommodity).toHaveBeenCalled();
-    expect(component.subCommodityList).toEqual([
-      { SerialNumber: 1 },
-      { SerialNumber: 2 },
-      { SerialNumber: 3 },
-    ]);
+    expect(component.subCommodityList).toEqual({ 
+    SerialNumber: 3 
+    });
   });
 
   it('should handle error  when getSubcommodity() is called', () => {
@@ -359,11 +355,9 @@ it('should reset all flags when changeFlagHeader() is called', () => {
   });
 it('should reset all flags in accountHeaderColumns to false when resetAllFlag() is called', () => {
 
-    component.accountHeaderColumns = [
-      { clickFlag: true },
-      { clickFlag: false },
-      { clickFlag: true },
-    ];
+    component.accountHeaderColumns = 
+      clickFlag: true,
+
 
     component.resetAllFlag();
 
