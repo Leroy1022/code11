@@ -320,3 +320,29 @@ it('should return false in "add" mode when checkDuplicate() is called', () => {
     expect(result).toBe(true);
 
   });
+
+
+it('should do nothing when previousPage() Is called', () => {
+
+    const PCurrentpage = 1;
+    const PpageSize = 10;
+    component.currentPage = PCurrentpage;
+
+    component.previousPage(PCurrentpage, PpageSize);
+
+    // You should assert that the currentPage and other properties remain unchanged.
+    expect(component.currentPage).toBe(PCurrentpage);
+  });
+
+  it('should decrement the current page and emit page data when previousPage() Is called', () => {
+ 
+    const PCurrentpage = 3;
+    const PpageSize = 10;
+    component.currentPage = PCurrentpage;
+    spyOn(component, 'emitPageData');
+
+    component.previousPage(PCurrentpage, PpageSize);
+
+    expect(component.currentPage).toBe(PCurrentpage - 1);
+    expect(component.emitPageData).toHaveBeenCalledWith(PCurrentpage - 1, PpageSize);
+  });
