@@ -18,3 +18,16 @@ it('should update supplierAccountList and related properties when getSupplierAcc
     expect(component.supplierAccountList[0].Name).toBe('Supplier 1')
     expect(component.showSubCommodity) toEqual(true);
  });
+
+ it('should call AddAccount when AddAccount() is called ', () => {
+    component.isloading = true; 
+    component.accountform = {
+      reset: jasmine.createSpy('reset'), 
+    };
+    component.checkUBHLicense = false;
+    spyOn(notifyService, 'showError');
+    component.getAccountGridData();
+    expect(component.startRowNum)ToEqual(1);
+    component.clearForm(component.accountform);
+    expect(notifyService.showSuccess).toHaveBeenCalledWith(component.Accounts.account_add_success, '');
+  });
