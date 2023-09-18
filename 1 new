@@ -42,3 +42,38 @@ it('should call SubCommodity when getSubCommodity() is called ', () => {
     const result = comparisonFunction(b, a);
     expect(result).toBe(1);
 });
+
+
+
+
+
+it('should account details change when onAccountChange() is called', () => {
+  
+const value = { accountId: 123, accountName: 'Account 123' };
+ expect(component.accountSelected).toEqual(value);
+component.onAccountChange();
+component.UBMCommonService.setAccountId(+value.accountId); 
+component.accountNumberclicked = true;
+component.invoiceInformation.accountNumber value.accountNumber; 
+component.accountName = value.accountNumber;
+component.searchTextAccountNumber = ""; 
+component.isAccountDropdownOpen = !this.isAccountDropdownOpen;
+component.invoiceInformation.premiseNumber="";
+component.accountGroupNumber="";
+component.invoiceInformation.accountNumber == "";
+component.resetDropdown();
+component.getCommodityByAccNo();
+component.accountSelected();
+expect(component.tempAccountsMappingList) ToEqual (component.accountsMappingList); 
+expect(component.locationSelected) ToEqual (false);
+expect(component.buildingSelected) ToEqual (false);
+expect(component.providerSelected) ToEqual (false);
+expect(accountSelected)ToEqual (true);
+expect(component.locationSelected) ToEqual (true);
+component.updateLocationList();
+expect(component.providerSelected) ToEqual (true);
+component.updateProviderList();
+expect(component.buildingselected) ToEqual (true);
+component.updateBuildingList()
+component.premiseNumber()
+});
