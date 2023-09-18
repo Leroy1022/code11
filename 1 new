@@ -1,0 +1,12 @@
+it('should update buildingList and CurrencyCode when getBuildingByLocation() is called ', () => {
+    component.getBuildingByLocation();
+    expect(component.accountDetails.BuildingId).toEqual("");
+    expect(component.accountDetails.BuildingId).toEqual("");
+     window.sessionStorage['UserRoleId'] = 1;
+    spyOn(UBMCommonService, 'buildingList').and.returnValue(of(result)); 
+ 
+  expect(component.CurrencyCode).toEqual(undefined);
+    expect(component.buildingList).toEqual(mockResponse); 
+    component.getSupplierAccount();
+
+  });
