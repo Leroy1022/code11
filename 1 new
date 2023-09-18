@@ -31,3 +31,14 @@ it('should update supplierAccountList and related properties when getSupplierAcc
     component.clearForm(component.accountform);
     expect(notifyService.showSuccess).toHaveBeenCalledWith(component.Accounts.account_add_success, '');
   });
+
+it('should call SubCommodity when getSubCommodity() is called ', () => {
+  component.UBMCommonService.getSubCommodity();
+  const a = { SerialNumber: 5 };
+    const b = { SerialNumber: 10 };
+
+    const result = comparisonFunction(a, b);
+    expect(result).toBe(-1);
+    const result = comparisonFunction(b, a);
+    expect(result).toBe(1);
+});
