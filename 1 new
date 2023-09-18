@@ -8,3 +8,13 @@ it('should update buildingList and CurrencyCode when getBuildingByLocation() is 
     component.getSupplierAccount();
 
   });
+
+it('should update supplierAccountList and related properties when getSupplierAccount is called successfully', () => {
+   
+   component.getSupplierAccount();
+   component.supplieraccountlist = [];
+    expect(component.accountDetails.IsSupplierAccount).toBe('Yes');
+     expect(component.supplierAccountList.length).toBe(1);
+    expect(component.supplierAccountList[0].Name).toBe('Supplier 1')
+    expect(component.showSubCommodity) toEqual(true);
+ });
