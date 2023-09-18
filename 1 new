@@ -65,15 +65,28 @@ component.resetDropdown();
 component.getCommodityByAccNo();
 component.accountSelected();
 expect(component.tempAccountsMappingList) ToEqual (component.accountsMappingList); 
-expect(component.locationSelected) ToEqual (false);
-expect(component.buildingSelected) ToEqual (false);
-expect(component.providerSelected) ToEqual (false);
+expect(component.locationSelected) .toEqual (false);
+expect(component.buildingSelected) .toEqual (false);
+expect(component.providerSelected) .toEqual (false);
 expect(accountSelected)ToEqual (true);
-expect(component.locationSelected) ToEqual (true);
+expect(component.locationSelected) .toEqual (true);
 component.updateLocationList();
-expect(component.providerSelected) ToEqual (true);
+expect(component.providerSelected).toEqual (true);
 component.updateProviderList();
-expect(component.buildingselected) ToEqual (true);
+expect(component.buildingselected).toEqual(true);
 component.updateBuildingList()
 component.premiseNumber()
 });
+it('should reset properties when ngOnDestroy is called', () => {
+ 
+     const v=1;
+ 
+    component.ngOnDestroy();
+ 
+    component.invoiceHeader.forEach((v) => {
+      expect(v.clickFlag).toBe(false);
+      expect(v.IsFilter).toBe(false);
+      expect(v.IsAscending).toBe(false);
+      expect(v.IsDescending).toBe(false);
+    })
+    });
