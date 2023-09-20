@@ -42,13 +42,13 @@ accountForm
 
 it('should return true if UBMLicense is active', () => {
   commonServiceMock.isModuleExistAndActiveInPackageLicense.and.returnValue(true);
-  const result = service.checkUBMLicense();
+  const result = UBMCommonService.checkUBMLicense();
   expect(result).toBeTrue();
 });
 it('should return false if UBMLicense is not active', () => {
   commonServiceMock.isModuleExistAndActiveInPackageLicense.and.returnValue(false);
 
-  const result = service.checkUBMLicense();
+  const result = UBMCommonService.checkUBMLicense();
 
   expect(result).toBeFalse();
 });
