@@ -52,10 +52,10 @@ it('should return false if UBMLicense is not active', () => {
 
   expect(result).toBeFalse();
 });
-it('should log an error when deleteAccount() fails', ()=>{
-const errorMessage = "Error Deleting an account!!!";
-mockUBMService.deleteAccount.and.returnValue(throwError(() =>errorMessage));
-spyon(console, 'log'); component.deleteAccount(accountForm); 
+it('should log an error when addAccountValidation() fails', ()=>{
+const errorMessage = "Error while validating an account!!!";
+mockUBMService.addAccountValidation.and.returnValue(throwError(() =>errorMessage));
+spyon(console, 'log'); component.addAccountValidation(accountForm); 
 expect(console.log).toHaveBeenCalledwith(errorMessage);
 });
 
@@ -93,3 +93,13 @@ expect(UBMCommonService.deleteAccount).not.toHaveBeenCalled(showSuccess);
 
 
 component.AccountHeaderDetails = (clickFlag: true };
+
+
+
+
+it('should log an error when addAccountValidation() fails', ()=>{
+const errorMessage = "Error while validating an account!!!";
+mockUBMService.addAccountValidation.and.returnValue(throwError(() =>errorMessage));
+spyon(console, 'log'); component.addAccountValidation(accountForm); 
+expect(console.log).toHaveBeenCalledwith(errorMessage);
+});
