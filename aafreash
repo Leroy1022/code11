@@ -1,0 +1,15 @@
+it('should call SubCommodity when getSubCommodity() is called ', () => {
+   
+  component.UBMCommonService.getSubCommodity();
+  const a = { mockSubCommodityDataList.SerialNumber:5};
+    const b = { mockSubCommodityDataList.SerialNumber:6 };
+ if (a < b) {
+    spyOnMethod.and.returnValue(-1);
+  } else if(a > b) {
+    spyOnMethod.and.returnValue(1);
+  }
+  else{
+    spyOnMethod.and.returnValue(0);
+  }
+  
+});
