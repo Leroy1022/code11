@@ -31,3 +31,10 @@ it('should Sort SubCommodity when getSubCommodity() is called', () => {
   component.getSubCommodity();
   expect(component.getSubCommodity).toEqual([{mockSubCommodityDatalist}]);
 });
+
+it('should log an error when addAccount() fails', ()=>{
+const errorMessage "Error adding an account!!!";
+mockUBMService.addAccount.and.returnValue(throwError(() =>errorMessage));
+spyon(console, 'log'); component.addAccount(); 
+expect(console.log).toHaveBeenCalledwith(errorMessage);
+});
