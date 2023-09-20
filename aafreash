@@ -1,15 +1,16 @@
 it('should call SubCommodity when getSubCommodity() is called ', () => {
-   
-  component.SubCommodity();
-  const a = mockSubCommodityDataList.SerialNumber:5;
-    const b = mockSubCommodityDataList.SerialNumber:6 ;
+   UBMCommonService.getSubCommodity.and.returnValue(of(mockSubCommodityDataList)); 
+  result:subCommodity[];
+  mockSubCommodityDataList:SerialNumber;
+  component.getSubCommodity();
+  expect(UBMCommonService.getSubCommodity).toHaveBeenCalled();
  if (a < b) {
-    returnValue(-1);
+    expect(component.result).toEqual(-1); 
   } else if(a > b) {
-    returnValue(1);
+    expect(component.result).toEqual(1); 
   }
   else{
-    returnValue(0);
+     expect(component.result).toEqual(0); 
   }
-  
+  expect(component.subCommodityList).toEqual(mockSubCommodityDataList);
 });
