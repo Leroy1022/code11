@@ -52,9 +52,9 @@ it('should return false if UBMLicense is not active', () => {
 
   expect(result).toBeFalse();
 });
-it('should log an error when updateAccount() fails', ()=>{
-const errorMessage = "Error updating an account!!!";
-mockUBMService.updateAccount.and.returnValue(throwError(() =>errorMessage));
-spyon(console, 'log'); component.updateAccount(accountForm); 
+it('should log an error when deleteAccount() fails', ()=>{
+const errorMessage = "Error Deleting an account!!!";
+mockUBMService.deleteAccount.and.returnValue(throwError(() =>errorMessage));
+spyon(console, 'log'); component.deleteAccount(accountForm); 
 expect(console.log).toHaveBeenCalledwith(errorMessage);
 });
