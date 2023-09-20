@@ -14,3 +14,22 @@ it('should call SubCommodity when getSubCommodity() is called ', () => {
   }
   expect(component.subCommodityList).toEqual(mockSubCommodityDataList);
 });
+
+
+
+it('should Sort SubCommodity when getSubCommodity() is called', () => {
+  const subCommodityData: SubCommodity[] = [
+    { SerialNumber: 3 },
+    { SerialNumber: 1 },
+    { SerialNumber: 2 },
+  ];
+
+  spyOn(UBMCommonService, 'getSubCommodity').and.returnValue(of(subCommodityData));
+
+  component.getSubCommodity();
+
+  expect(component.subcommodityList).toEqual([
+    { SerialNumber: 1 },
+    { SerialNumber: 2 },
+    { SerialNumber: 3 },
+  ]);
