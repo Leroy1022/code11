@@ -90,3 +90,6 @@ constshowSuccess = "Account delete success!";
   expect(form.resetForm).toHaveBeenCalled();
 expect(UBMCommonService.deleteAccount).not.toHaveBeenCalled(showSuccess);
 });
+
+
+component.AccountHeaderDetails = (clickFlag: true };
