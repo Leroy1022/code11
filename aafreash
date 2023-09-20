@@ -52,3 +52,9 @@ it('should return false if UBMLicense is not active', () => {
 
   expect(result).toBeFalse();
 });
+it('should log an error when updateAccount() fails', ()=>{
+const errorMessage = "Error updating an account!!!";
+mockUBMService.updateAccount.and.returnValue(throwError(() =>errorMessage));
+spyon(console, 'log'); component.updateAccount(accountForm); 
+expect(console.log).toHaveBeenCalledwith(errorMessage);
+});
