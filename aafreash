@@ -26,8 +26,8 @@ it('should Sort SubCommodity when getSubCommodity() is called', () => {
 
 
 it('should Sort SubCommodity when getSubCommodity() is called', () => {
-  const mockSubCommodityDatalist 
-  spyOn(UBMCommonService, 'getSubCommodity').and.returnValue(of(mockSubCommodityDatalist));
+  const accountMockData.mockSubCommodityDatalist,
+  spyOn(UBMCommonService, 'getSubCommodity').and.returnValue(of(accountMockData.mockSubCommodityDatalist));
   component.getSubCommodity();
-  expect(component.subcommodityList).toEqual([{mockSubCommodityDatalist}]);
+  expect(component.getSubCommodity).toEqual([{mockSubCommodityDatalist}]);
 });
