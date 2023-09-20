@@ -58,3 +58,35 @@ mockUBMService.deleteAccount.and.returnValue(throwError(() =>errorMessage));
 spyon(console, 'log'); component.deleteAccount(accountForm); 
 expect(console.log).toHaveBeenCalledwith(errorMessage);
 });
+
+it('should delete an account when deleteAccount() is called', () => {
+  component.accountGridData = [{ supplierAccountId: 1 }, { supplierAccountId: 2 }];
+  component.accountDetails = { AccountId: 3 };
+ showSuccess= "Delete confirmation for supplier accounts"
+  const form: NgForm = { resetForm: jasmine.createSpy('resetForm') } as any;
+
+  component.deleteAccount(form);
+
+  mockUBMService.deleteAccount.and.returnValue(throwError(() =>showSuccess)); 
+  expect(form.resetForm).toHaveBeenCalled();
+expect(console.log).toHaveBeenCalledwith(errorMessage)
+  expect(UBMCommonService.deleteAccount).not.toHaveBeenCalled(showSuccess);
+});
+
+it('delete an account when deleteAccount() is called', () => {
+showSuccess = "Account delete success!";
+  component.AccountGrid = [{ supplierAccountId: 1 }, { supplierAccountId: 2 }];
+  component.Account = { AccountId: 1 };
+showSuccess
+  const form: NgForm = { resetForm: jasmine.createSpy('resetForm') } as any;
+
+  component.deleteAccount(form);
+
+ mockUBMService.deleteAccount.and.returnValue(throwError(() =>showSuccess)); 
+
+  );
+  expect(UBMCommonService.deleteAccount).toHaveBeenCalledWith(1);
+  expect(component.accountGrid).toEqual([{ supplierAccountId: 2 }]);
+  expect(form.resetForm).toHaveBeenCalled();
+expect(UBMCommonService.deleteAccount).not.toHaveBeenCalled(showSuccess);
+});
