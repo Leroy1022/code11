@@ -2,7 +2,7 @@
 it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () => {
 
     spyOn(yourComponent.UBMCommonService, 'getSupplierAccount'); 
-    yourComponent.getSupplierAccount();
+    component.getSupplierAccount();
 
     expect(component.supplierAccountList).toBe('Yes');
   });
@@ -13,7 +13,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
       { AccountId: '2' },
     ];
     spyOn(component.UBMCommonService, 'getSupplierAccount').and.returnValue(of(mockResult)); // Mocking the service call
-    yourComponent.accountDetails = {
+    component.accountDetails = {
       IsSupplierAccount: false,
       LocationId: '123',
       CommodityId: '456',
@@ -68,7 +68,7 @@ the below code has to be replaced with add account error code
   it('should call AddAccount and handle success', () => {
     const accountDetails = {}; 
 
-    const addAccountSpy = spyOn(ubmService, 'AddAccount') ;
+    const addAccountSpy = spyOn(UBMCommonService, 'AddAccount') ;
 
     const getAccountGridDataSpy = spyOn(component, 'getAccountGridData');
     const clearFormSpy = spyOn(component, 'clearForm');
