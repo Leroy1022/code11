@@ -96,3 +96,18 @@ it('should filter data and update when getPagedDataAsync() is called', () => {
     expect(component.pageSize).toBe(10); 
     expect(component.totalItem).toBe(1); 
   });
+
+
+ it('should sort data in ascending order when sort by is called', () => {
+    const testData = [
+      { name: 'John', age: 30 },
+      { name: 'Alice', age: 25 },
+    ];
+    component.accountGridData = testData;
+    component.accountHeaderColumns = [{ name: 'name', dataType: 'alphaNum' }];
+    component.isAscending = true;
+    component.retainSort = {}; 
+    component.sortBy({ name: 'name', dataType: 'alphaNum' });
+    expect(component.accountGridData[0].name).toBe('Alice');
+    expect(component.accountGridData[1].name).toBe('John');
+  });
