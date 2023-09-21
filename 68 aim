@@ -214,3 +214,4 @@ it('should bind grid data and emit page content when bindGridData() is called ',
     expect(component.pageContent.emit).toHaveBeenCalledWith(testData);
   });
 const SupplierAccountSpy =
+.and.returnValue(of(err))
