@@ -219,3 +219,8 @@ const SupplierAccountSpy =
 
 const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
 ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(AccountId));
+
+
+
+const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(mockResult));
