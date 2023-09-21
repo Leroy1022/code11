@@ -81,3 +81,18 @@ the below code has to be replaced with add account error code
     expect(clearFormSpy).toHaveBeenCalled();
     expect(showSuccessSpy).toHaveBeenCalledWith('Accounts.account_add_success', ''); 
         });
+
+it('should filter data and update when getPagedDataAsync() is called', () => {
+    const testData = [
+      { FacilityName: 'Facility1', BuildingName: 'Building1' },
+      { FacilityName: 'Facility2', BuildingName: 'Building2' },
+  
+    ];
+    component.accountSearchData = testData;
+    component.filterText = 'Facility1';
+    component.getPagedDataAsync();
+    expect(component.accountSearchData.length).toBe(1); 
+    expect(component.currentPage).toBe(1); 
+    expect(component.pageSize).toBe(10); 
+    expect(component.totalItem).toBe(1); 
+  });
