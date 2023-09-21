@@ -47,3 +47,20 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
     component.getSupplierAccount();
     expect(component.showSubCommodity).toBe(false);
   });
+
+
+the below code has to be replaced with add account error code
+
+   it('error while adding an account', () => {
+    const consoleSpy = spyOn(console, 'log'); 
+    const notifyService = TestBed.inject(NotificationService); 
+    const clearFormSpy = spyOn(component, 'clearForm'); 
+
+    const err = 'error while adding an account '; 
+
+    component.handleError(err);
+
+    expect(consoleSpy).toHaveBeenCalledWith(err); 
+    expect(notifyService.showError).toHaveBeenCalledWith('Accounts.account add fail'); 
+    expect(clearFormSpy).toHaveBeenCalled(); 
+  });
