@@ -111,3 +111,21 @@ it('should filter data and update when getPagedDataAsync() is called', () => {
     expect(component.accountGridData[0].name).toBe('Alice');
     expect(component.accountGridData[1].name).toBe('John');
   });
+
+it('should bind grid data and emit page content when bindGridData() is called ', () => {
+
+    const testData = [
+      { name: 'John', age: 30 },
+      { name: 'Alice', age: 25 },
+
+    ];
+
+    component.accountGridData = testData;
+    component.pageSize = 10;
+
+    component.bindGridData();
+  expect(component.totalItem).toBe(2); 
+    expect(component.accountGridData.length).toBe(2); 
+    spyOn(component.pageContent, 'emit');
+    expect(component.pageContent.emit).toHaveBeenCalledWith(testData);
+  });
