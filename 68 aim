@@ -20,7 +20,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
       AccountId: '789',
     };
     yourComponent.getSupplierAccount();
-    expect(yourComponent.supplierAccountList).toEqual([/* Expected filtered result here */]);
+    expect(component.supplierAccountList).toEqual([/* Expected filtered result here */]);
   });
 
   it('should set showSubCommodity to true when CommodityId matches AccountsConstants.CommodityId', () => {
@@ -33,7 +33,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
 
     };
     component.getSupplierAccount();
-    expect(yourComponent.showSubCommodity).toBe(true);
+    expect(component.showSubCommodity).toBe(true);
   });
 
   it('should set showSubCommodity to false when CommodityId does not match AccountsConstants.CommodityId', () => {
@@ -51,7 +51,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
 
 the below code has to be replaced with add account error code
 
-   it('error while adding an account', () => {
+  it('error while adding an account', () => {
     const consoleSpy = spyOn(console, 'log'); 
     const notifyService = TestBed.inject(NotificationService); 
     const clearFormSpy = spyOn(component, 'clearForm'); 
@@ -64,3 +64,20 @@ the below code has to be replaced with add account error code
     expect(notifyService.showError).toHaveBeenCalledWith('Accounts.account add fail'); 
     expect(clearFormSpy).toHaveBeenCalled(); 
   });
+
+  it('should call AddAccount and handle success', () => {
+    const accountDetails = {}; 
+
+    const addAccountSpy = spyOn(ubmService, 'AddAccount') ;
+
+    const getAccountGridDataSpy = spyOn(component, 'getAccountGridData');
+    const clearFormSpy = spyOn(component, 'clearForm');
+    const showSuccessSpy = spyOn(NotificationService, 'showSuccess');
+
+    component.someMethod(accountDetails);
+
+    expect(addAccountSpy).toHaveBeenCalledWith(accountDetails);
+    expect(getAccountGridDataSpy).toHaveBeenCalled();
+    expect(clearFormSpy).toHaveBeenCalled();
+    expect(showSuccessSpy).toHaveBeenCalledWith('Accounts.account_add_success', ''); 
+        });
