@@ -134,7 +134,7 @@ it('should bind grid data and emit page content when bindGridData() is called ',
 
 it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () => {
 
-    spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId));
+   const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId));
     component.getSupplierAccount();
 
     expect(component.supplierAccountList).toBe('Yes');
@@ -145,7 +145,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
       { AccountId: '1' }, 
       { AccountId: '2' },
     ];
-    spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(mockResult)); 
+    const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(mockResult)); 
       component.accountDetails = {
       IsSupplierAccount: false,
       LocationId: '123',
@@ -158,7 +158,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
 
   it('should set showSubCommodity to true when CommodityId matches AccountsConstants.CommodityId', () => {
 
-    spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId)); 
+   const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId)); 
     yourComponent.accountDetails = {
       IsSupplierAccount: false,
       LocationId: '123',
@@ -171,7 +171,7 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
 
   it('should set showSubCommodity to false when CommodityId does not match AccountsConstants.CommodityId', () => {
  
-    spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(LocationId));; 
+    const SupplierAccountSpy =spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(LocationId));; 
     component.accountDetails = {
       IsSupplierAccount: false,
       LocationId: '123',
@@ -213,3 +213,4 @@ it('should bind grid data and emit page content when bindGridData() is called ',
     spyOn(component.pageContent, 'emit');
     expect(component.pageContent.emit).toHaveBeenCalledWith(testData);
   });
+const SupplierAccountSpy =
