@@ -1,0 +1,49 @@
+
+it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () => {
+
+    spyOn(yourComponent.UBMCommonService, 'getSupplierAccount'); 
+    yourComponent.getSupplierAccount();
+
+    expect(component.supplierAccountList).toBe('Yes');
+  });
+
+  it('should set supplierAccountList based on the result of the service call', () => {
+    const mockResult = [
+      { AccountId: '1' }, 
+      { AccountId: '2' },
+    ];
+    spyOn(component.UBMCommonService, 'getSupplierAccount').and.returnValue(of(mockResult)); // Mocking the service call
+    yourComponent.accountDetails = {
+      IsSupplierAccount: false,
+      LocationId: '123',
+      CommodityId: '456',
+      AccountId: '789',
+    };
+    yourComponent.getSupplierAccount();
+    expect(yourComponent.supplierAccountList).toEqual([/* Expected filtered result here */]);
+  });
+
+  it('should set showSubCommodity to true when CommodityId matches AccountsConstants.CommodityId', () => {
+
+    spyOn(component.UBMCommonService, 'getSupplierAccount'); 
+    yourComponent.accountDetails = {
+      IsSupplierAccount: false,
+      LocationId: '123',
+      CommodityId: Account.CommodityId,  
+
+    };
+    component.getSupplierAccount();
+    expect(yourComponent.showSubCommodity).toBe(true);
+  });
+
+  it('should set showSubCommodity to false when CommodityId does not match AccountsConstants.CommodityId', () => {
+ 
+    spyOn(component.UBMCommonService, 'getSupplierAccount'); 
+    yourComponent.accountDetails = {
+      IsSupplierAccount: false,
+      LocationId: '123',
+      CommodityId: '999', 
+    };
+    component.getSupplierAccount();
+    expect(component.showSubCommodity).toBe(false);
+  });
