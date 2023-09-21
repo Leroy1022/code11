@@ -100,14 +100,14 @@ it('should filter data and update when getPagedDataAsync() is called', () => {
 
  it('should sort data in ascending order when sort by is called', () => {
     const testData = [
-      { name: 'John', age: 30 },
-      { name: 'Alice', age: 25 },
+      { LocationId: '11', FacilityName: 'Facility1'},
+      { LocationId: '12', FacilityName: 'Facility2' },
     ];
     component.accountGridData = testData;
     component.accountHeaderColumns = [{ name: 'name', dataType: 'alphaNum' }];
     component.isAscending = true;
     component.retainSort = {}; 
-    component.sortBy({ name: 'name', dataType: 'alphaNum' });
+    component.sortBy({ LocationId: 'LocationId', dataType: 'String' });
     expect(component.accountGridData[0].name).toBe('Alice');
     expect(component.accountGridData[1].name).toBe('John');
   });
@@ -115,8 +115,8 @@ it('should filter data and update when getPagedDataAsync() is called', () => {
 it('should bind grid data and emit page content when bindGridData() is called ', () => {
 
     const testData = [
-      { name: 'John', age: 30 },
-      { name: 'Alice', age: 25 },
+       { LocationId: '11', FacilityName: 'Facility1'},
+      { LocationId: '12', FacilityName: 'Facility2' },
 
     ];
 
@@ -179,4 +179,37 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
     };
     component.getSupplierAccount();
     expect(component.showSubCommodity).toBe(false);
+  });
+
+
+ it('should sort data in ascending order when sort by is called', () => {
+    const testData = [
+      { LocationId: '11', FacilityName: 'Facility1'},
+      { LocationId: '12', FacilityName: 'Facility2' },
+    ];
+    component.accountGridData = testData;
+    component.accountHeaderColumns = [{ name: 'name', dataType: 'alphaNum' }];
+    component.isAscending = true;
+    component.retainSort = {}; 
+    component.sortBy({ LocationId: 'LocationId', dataType: 'String' });
+    expect(component.accountGridData[0].name).toBe('Alice');
+    expect(component.accountGridData[1].name).toBe('John');
+  });
+
+it('should bind grid data and emit page content when bindGridData() is called ', () => {
+
+    const testData = [
+       { LocationId: '11', FacilityName: 'Facility1'},
+      { LocationId: '12', FacilityName: 'Facility2' },
+
+    ];
+
+    component.accountGridData = testData;
+    component.pageSize = 10;
+
+    component.bindGridData();
+  expect(component.totalItem).toBe(2); 
+    expect(component.accountGridData.length).toBe(2); 
+    spyOn(component.pageContent, 'emit');
+    expect(component.pageContent.emit).toHaveBeenCalledWith(testData);
   });
