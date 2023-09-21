@@ -134,7 +134,8 @@ it('should bind grid data and emit page content when bindGridData() is called ',
 
 it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () => {
 
-   const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId));
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Account));
     component.getSupplierAccount();
 
     expect(component.supplierAccountList).toBe('Yes');
@@ -145,20 +146,21 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
       { AccountId: '1' }, 
       { AccountId: '2' },
     ];
-    const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(mockResult)); 
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(mockResult));
       component.accountDetails = {
-      IsSupplierAccount: false,
+ 
       LocationId: '123',
       CommodityId: '456',
-      AccountId: '789',
+ 
     };
     component.getSupplierAccount();
     expect(component.supplierAccountList).toEqual([/* Expected filtered result here */]);
   });
 
   it('should set showSubCommodity to true when CommodityId matches AccountsConstants.CommodityId', () => {
-
-   const SupplierAccountSpy = spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(AccountId)); 
+const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Account));
     yourComponent.accountDetails = {
       IsSupplierAccount: false,
       LocationId: '123',
@@ -171,9 +173,10 @@ it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () 
 
   it('should set showSubCommodity to false when CommodityId does not match AccountsConstants.CommodityId', () => {
  
-    const SupplierAccountSpy =spyOn(UBMCommonService, 'getSupplierAccount').and.returnValue(of(LocationId));; 
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Location));
     component.accountDetails = {
-      IsSupplierAccount: false,
+   
       LocationId: '123',
       CommodityId: '999', 
     };
@@ -229,3 +232,59 @@ ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(mockResult));
 
 const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
 ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(LocationId));
+
+
+
+
+
+it('should set supplierAccountList to "Yes" when IsSupplierAccount is true', () => {
+
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Account));
+    component.getSupplierAccount();
+
+    expect(component.supplierAccountList).toBe('Yes');
+  });
+
+  it('should set supplierAccountList based on the result of the service call', () => {
+    const mockResult = [
+      { AccountId: '1' }, 
+      { AccountId: '2' },
+    ];
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(mockResult));
+      component.accountDetails = {
+ 
+      LocationId: '123',
+      CommodityId: '456',
+ 
+    };
+    component.getSupplierAccount();
+    expect(component.supplierAccountList).toEqual([/* Expected filtered result here */]);
+  });
+
+  it('should set showSubCommodity to true when CommodityId matches AccountsConstants.CommodityId', () => {
+const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Account));
+    yourComponent.accountDetails = {
+      IsSupplierAccount: false,
+      LocationId: '123',
+      CommodityId: Account.CommodityId,  
+
+    };
+    component.getSupplierAccount();
+    expect(yourComponent.showSubCommodity).toBe(true);
+  });
+
+  it('should set showSubCommodity to false when CommodityId does not match AccountsConstants.CommodityId', () => {
+ 
+   const ubmCommonServiceSpy = jasmine.createSpyObj('UBMCommonService', ['getSupplierAccount']);
+ubmCommonServiceSpy.getSupplierAccount.and.returnValue(of(Location));
+    component.accountDetails = {
+   
+      LocationId: '123',
+      CommodityId: '999', 
+    };
+    component.getSupplierAccount();
+    expect(component.showSubCommodity).toBe(false);
+  });
